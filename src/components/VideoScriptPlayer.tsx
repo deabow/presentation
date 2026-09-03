@@ -6,65 +6,61 @@ import {
   PauseIcon,
   SparklesIcon,
   ShieldCheckIcon,
-  FileTextIcon,
-  PhoneIcon,
-  VolumeIcon,
+  AwardIcon,
+  CheckCircle2Icon,
 } from "./Icons";
 import { soundFx } from "./SoundEffects";
 
-interface VideoScriptPlayerProps {
-  onOpenConsultation: () => void;
-}
-
-const SCRIPT_STAGES = [
+const PHASES = [
   {
     id: 1,
     start: 0,
-    end: 20,
-    title: "البداية واللسعة (The Hook)",
-    badge: "00:00 - 00:20",
-    color: "from-rose-500 to-red-600",
+    end: 15,
+    title: "المشكلة (الأرض قبل السحر)",
+    badge: "00:00 - 00:15",
+    color: "from-rose-500 to-amber-600",
     border: "border-rose-500/30",
     tagColor: "bg-rose-500/10 text-rose-300 border-rose-500/20",
-    text: "«أكبر غلطة بيقع فيها صاحب البيزنس إنه بيفتكر المحامي دوره يجي بعد ما الفاس تقع في الراس.. في حين إن أكتر من 70% من خناقات الشركات وخسائر الفلوس كان ممكن تتقفل بسطر واحد مكتوب صح في العقد من الأول!»",
-    summary: "صدمة المستمع بالحقيقة وتنبيهه إلى نزيف الأموال الخفي في الثغرات التعاقدية.",
+    content: "لقطات للأرض أو الملعب قبل التنفيذ، موثقة بجودة تصوير ضعيفة وغير مدروسة كما كانت من قبل في الفيديوهات القديمة.",
+    note: "إظهار الفرق الحقيقي في القيمة اللي كانت بتضيع بسبب ضعف التوثيق.",
+    cameraAngle: "لقطة أرضية واسعة • إضاءة خافتة • توثيق غير احترافي",
   },
   {
     id: 2,
-    start: 20,
-    end: 40,
-    title: "القيمة والتقل (Authority)",
-    badge: "00:20 - 00:40",
-    color: "from-sky-500 to-blue-600",
-    border: "border-sky-500/30",
-    tagColor: "bg-sky-500/10 text-sky-300 border-sky-500/20",
-    text: "«معانا في مؤسسة كمال أبو علي، إحنا بنوفر الحماية الكاملة لبيزنسك قبل ما المشكلة تبدأ.. من تظبيط العقود التجارية وتأسيس الكيان، لحد قفل القضايا العمالية والتجارية في المحاكم بأسرع وقت وأعلى كفاءة.»",
-    summary: "إظهار ثقل وخبرة كمال أبو علي في تحصين الكيان وحسم القضايا في أسرع وقت.",
+    start: 15,
+    end: 35,
+    title: "التنفيذ (يد الخبرة)",
+    badge: "00:15 - 00:35",
+    color: "from-teal-500 to-cyan-600",
+    border: "border-teal-500/40",
+    tagColor: "bg-teal-500/10 text-teal-300 border-teal-500/30",
+    content: "لقطات من مراحل التصميم والزراعة والتشطيب وشبكات الري أثناء التنفيذ الفعلي بلمسة م. وديع.",
+    note: "بناء الثقة عند المشاهد عن طريق إظهار الاحترافية في أدق تفاصيل الشغل.",
+    cameraAngle: "Macro Focus • حركة درون سلسة • تفاصيل الخامات والزرع",
   },
   {
     id: 3,
-    start: 40,
+    start: 35,
     end: 60,
-    title: "القفلة والطلب (Call to Action)",
-    badge: "00:40 - 00:60",
-    color: "from-emerald-500 to-teal-600",
-    border: "border-emerald-500/30",
-    tagColor: "bg-emerald-500/10 text-emerald-300 border-emerald-500/20",
-    text: "«أمّن شركتك وعقودك صح النهاردة.. سيب بيانات شركتك في الفورم عشان نحجزلك ميعاد استشارة ونقعد نراجع ملفاتك القانونية جوه المكتب.»",
-    summary: "دعوة صريحة ومباشرة لحجز استشارة وفحص أوراق الشركة داخل المكتب.",
+    title: "النتيجة (الفخامة المستحقة)",
+    badge: "00:35 - 01:00",
+    color: "from-emerald-400 to-teal-500",
+    border: "border-emerald-500/40",
+    tagColor: "bg-emerald-500/10 text-emerald-300 border-emerald-500/30",
+    content: "اللقطات السينمائية النهائية للملعب أو الحديقة بعد التنفيذ بجودة 4K وإضاءة مسائية مذهلة.",
+    note: "تحويل المشاهد لعميل عن طريق نتيجة نهائية تبيع نفسها بنفسها دون حشو.",
+    cameraAngle: "4K Drone Orbit • Cinematic Lighting • 60 FPS Smooth Flow",
   },
 ];
 
-export default function VideoScriptPlayer({
-  onOpenConsultation,
-}: VideoScriptPlayerProps) {
+export default function VideoScriptPlayer() {
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
+  const [sliderPosition, setSliderPosition] = useState(50); // For Before & After interactive slider
 
-  // Determine which stage is currently active based on currentTime
   const currentStageIndex =
-    currentTime < 20 ? 0 : currentTime < 40 ? 1 : 2;
-  const currentStage = SCRIPT_STAGES[currentStageIndex];
+    currentTime < 15 ? 0 : currentTime < 35 ? 1 : 2;
+  const currentStage = PHASES[currentStageIndex];
 
   // Playback timer simulation
   useEffect(() => {
@@ -79,7 +75,7 @@ export default function VideoScriptPlayer({
           }
           return prev + 1;
         });
-      }, 700); // slightly fast for engaging demo feel
+      }, 650);
     }
     return () => clearInterval(interval);
   }, [isPlaying]);
@@ -106,140 +102,195 @@ export default function VideoScriptPlayer({
     return `${mins.toString().padStart(2, "0")}:${secs.toString().padStart(2, "0")}`;
   };
 
+  const whatsappUrl = `https://wa.me/201220582340?text=${encodeURIComponent(
+    "أهلاً، اطلعت على خطة الهوية بتاعة Wadi3 وجاهز نبدأ التنفيذ!"
+  )}`;
+
   return (
-    <section id="video-script" className="py-16 relative">
+    <section id="media-showcase" className="py-16 relative">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
         <div className="text-center mb-12">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-500/10 border border-purple-500/20 text-purple-300 text-xs font-bold mb-3">
-            <PlayIcon className="w-3.5 h-3.5 text-purple-400" />
-            <span>سكريبت الفيديو الترويجي الموجه لأصحاب الشركات (B2B)</span>
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-teal-500/10 border border-teal-500/30 text-teal-300 text-xs font-bold mb-3">
+            <SparklesIcon className="w-3.5 h-3.5 text-teal-400" />
+            <span>توثيق التحول السينمائي لمشاريع وديع</span>
           </div>
           <h3 className="text-2xl sm:text-4xl font-black text-white">
-            فيديو الشركات للبوب كمال{" "}
-            <span className="text-gradient-purple">(60 ثانية تقفل ديل فوري)</span>
+            توثيق التحول:{" "}
+            <span className="text-gradient-teal">قبل التنفيذ وبعده</span>
           </h3>
-          <p className="text-sm sm:text-base text-slate-400 mt-2 max-w-2xl mx-auto">
-            مبني على سيكولوجية صناعة القرار لدى رجال الأعمال: إبراز الألم فوراً ثم إثبات القوة، يعقبهما استدعاء فوري للإجراء.
+          <p className="text-sm sm:text-base text-slate-300 mt-2 max-w-2xl mx-auto">
+            بدل ما الفيديوهات تظلم مستوى الشغل الممتاز، هنوثق كل مشروع بمعايير إعلانية 4K تحول المتابع لعميل جاهز للتعاقد.
           </p>
         </div>
 
-        {/* Video Player Mockup Container */}
-        <div className="glass-panel rounded-3xl border border-purple-500/30 overflow-hidden shadow-2xl relative">
+        {/* Video Player & Comparison Frame */}
+        <div className="glass-panel rounded-3xl border border-teal-500/30 overflow-hidden shadow-2xl relative">
           
           {/* Top Mock Window Bar */}
-          <div className="flex items-center justify-between px-6 py-3 border-b border-[#231b46] bg-[#090714]/80 text-xs">
+          <div className="flex items-center justify-between px-6 py-3 border-b border-[#1f2f45] bg-[#0a111c] text-xs">
             <div className="flex items-center gap-2">
               <span className="w-3 h-3 rounded-full bg-rose-500/80 inline-block"></span>
               <span className="w-3 h-3 rounded-full bg-amber-500/80 inline-block"></span>
-              <span className="w-3 h-3 rounded-full bg-emerald-500/80 inline-block"></span>
+              <span className="w-3 h-3 rounded-full bg-teal-500/80 inline-block"></span>
               <span className="mr-2 text-slate-400 font-mono">
-                rec_kamal_abo_ali_corporate_60s.mp4
+                wadi3_landscape_before_after_cinematic.mp4
               </span>
             </div>
 
-            <div className="flex items-center gap-3 text-slate-400">
-              <span className="hidden sm:inline font-mono">4K • 60 FPS • 16:9</span>
-              <span className="px-2 py-0.5 rounded bg-purple-500/20 text-purple-300 text-[10px] font-bold">
-                SHIFT Production
+            <div className="flex items-center gap-3 text-slate-300">
+              <span className="hidden sm:inline font-mono text-teal-300">
+                4K • 60 FPS • 16:9
+              </span>
+              <span className="px-2.5 py-0.5 rounded bg-teal-500/20 text-teal-300 text-[10px] font-bold border border-teal-500/30">
+                SHIFT PRODUCTION
               </span>
             </div>
           </div>
 
           {/* Player Screen Area */}
-          <div className="p-6 sm:p-10 relative bg-gradient-to-b from-[#0e0c1f] via-[#090815] to-[#06060c]">
+          <div className="p-6 sm:p-10 relative bg-gradient-to-b from-[#0c1422] via-[#09101b] to-[#070c14]">
             
-            {/* Visual Studio Setup Overlay */}
             <div className="flex flex-col lg:flex-row gap-8 items-center">
               
-              {/* Left Side: Animated Presenter Card */}
+              {/* Left Side: Visual Interactive "Before & After" Simulator */}
               <div className="w-full lg:w-5/12">
-                <div className="relative rounded-2xl overflow-hidden border border-[#2b2255] bg-gradient-to-br from-[#120f2b] to-[#0c0a1a] p-6 text-center shadow-xl group">
-                  {/* Subtle Background Badge */}
-                  <div className="w-24 h-24 rounded-full mx-auto mb-4 bg-gradient-to-tr from-purple-600 via-indigo-600 to-sky-500 p-1 shadow-lg shadow-purple-500/30 flex items-center justify-center">
-                    <div className="w-full h-full bg-[#0d0a1c] rounded-full flex items-center justify-center">
-                      <span className="text-4xl select-none">⚖️</span>
+                <div className="relative rounded-2xl overflow-hidden border border-[#24344d] bg-[#0c1626] p-5 text-center shadow-xl">
+                  
+                  {/* Interactive Before & After Visual Split Box */}
+                  <div className="relative h-48 sm:h-52 w-full rounded-xl overflow-hidden select-none mb-4 border border-[#2d4261]">
+                    
+                    {/* AFTER Layer (Right/Under) */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-[#0c2e35] via-[#1E6E78] to-[#0d1e27] flex flex-col items-center justify-center p-4 text-center">
+                      <span className="text-4xl mb-2">🌴✨</span>
+                      <span className="text-xs font-black px-2.5 py-1 rounded bg-teal-400 text-slate-950 shadow-md">
+                        بعد: 4K Cinematic
+                      </span>
+                      <p className="text-[11px] text-teal-100 mt-2 font-medium">
+                        نجيل طبيعي مخملي • إنارة ليلية خافتة • ممرات حجرية فاخرة
+                      </p>
+                    </div>
+
+                    {/* BEFORE Layer (Left/Over clipped) */}
+                    <div
+                      className="absolute inset-y-0 left-0 bg-gradient-to-br from-[#2a261f] via-[#1d1912] to-[#12100c] flex flex-col items-center justify-center p-4 text-center border-r-2 border-amber-400 shadow-xl"
+                      style={{ width: `${sliderPosition}%` }}
+                    >
+                      <span className="text-4xl mb-2">🚜🧱</span>
+                      <span className="text-xs font-black px-2.5 py-1 rounded bg-amber-400 text-slate-950 shadow-md">
+                        قبل: تصوير قديم
+                      </span>
+                      <p className="text-[11px] text-amber-200 mt-2 font-medium">
+                        أرض ترابية غير ممهدة • تصوير موبايل ضعيف بدون إضاءة
+                      </p>
+                    </div>
+
+                    {/* Draggable Divider Handle */}
+                    <div
+                      className="absolute inset-y-0 -ml-2 pointer-events-none flex items-center justify-center"
+                      style={{ left: `${sliderPosition}%` }}
+                    >
+                      <div className="w-6 h-6 rounded-full bg-white shadow-xl border-2 border-teal-500 flex items-center justify-center text-[10px] font-bold text-slate-900">
+                        ↔
+                      </div>
                     </div>
                   </div>
 
-                  <h4 className="text-lg font-black text-white">المستشار كمال أبو علي</h4>
-                  <p className="text-xs text-purple-300 font-semibold mb-3">
-                    المحامي بالنقض ومستشار كبرى الشركات
-                  </p>
-
-                  <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-sky-500/10 text-sky-400 border border-sky-500/20 text-[11px] font-bold mb-4">
-                    <ShieldCheckIcon className="w-3.5 h-3.5" />
-                    <span>هوية بصرية بنية وفخامة بنفسجية</span>
+                  {/* Interactive Slider Input */}
+                  <div className="space-y-1">
+                    <div className="flex justify-between text-[11px] text-slate-300 font-bold">
+                      <span>اسحب للمقارنة الحية:</span>
+                      <span className="text-teal-400">
+                        {sliderPosition > 50 ? "تركيز على النتيجة بعد" : "تركيز على الأرض قبل"}
+                      </span>
+                    </div>
+                    <input
+                      type="range"
+                      min="10"
+                      max="90"
+                      value={sliderPosition}
+                      onChange={(e) => {
+                        soundFx.playClick(500);
+                        setSliderPosition(Number(e.target.value));
+                      }}
+                      className="w-full accent-teal-400 cursor-pointer h-1.5 bg-[#172437] rounded-lg"
+                    />
                   </div>
 
-                  {/* Dynamic Audio Wave Bars (Active during playback) */}
-                  <div className="flex items-center justify-center gap-1 h-8 px-4 py-1 rounded-xl bg-black/40 border border-[#261f4d]">
-                    <span className={`w-1 bg-purple-500 rounded-full ${isPlaying ? "wave-bar-1" : "h-2"}`}></span>
-                    <span className={`w-1 bg-sky-400 rounded-full ${isPlaying ? "wave-bar-2" : "h-4"}`}></span>
-                    <span className={`w-1 bg-indigo-500 rounded-full ${isPlaying ? "wave-bar-3" : "h-3"}`}></span>
-                    <span className={`w-1 bg-purple-400 rounded-full ${isPlaying ? "wave-bar-4" : "h-5"}`}></span>
-                    <span className={`w-1 bg-cyan-400 rounded-full ${isPlaying ? "wave-bar-5" : "h-2"}`}></span>
-                    <span className={`w-1 bg-purple-500 rounded-full ${isPlaying ? "wave-bar-1" : "h-3"}`}></span>
-                    <span className="text-[10px] font-mono text-slate-400 mr-2">
-                      {isPlaying ? "جاري الإلقاء والتأثير..." : "جاهز للتشغيل"}
+                  {/* Audio visualizer */}
+                  <div className="mt-4 flex items-center justify-center gap-1.5 h-8 px-4 rounded-xl bg-black/40 border border-[#21324a]">
+                    <span className={`w-1 bg-teal-400 rounded-full ${isPlaying ? "wave-bar-1" : "h-2"}`}></span>
+                    <span className={`w-1 bg-cyan-300 rounded-full ${isPlaying ? "wave-bar-2" : "h-4"}`}></span>
+                    <span className={`w-1 bg-teal-500 rounded-full ${isPlaying ? "wave-bar-3" : "h-3"}`}></span>
+                    <span className={`w-1 bg-emerald-400 rounded-full ${isPlaying ? "wave-bar-4" : "h-5"}`}></span>
+                    <span className={`w-1 bg-teal-400 rounded-full ${isPlaying ? "wave-bar-5" : "h-2"}`}></span>
+                    <span className="text-[10px] font-mono text-slate-300 mr-2">
+                      {isPlaying ? "جاري محاكاة العرض 4K..." : "جاهز للتشغيل"}
                     </span>
                   </div>
+
                 </div>
               </div>
 
-              {/* Right Side: Dynamic Active Script Card */}
+              {/* Right Side: Active Phase Breakdown */}
               <div className="w-full lg:w-7/12">
-                <div className={`p-6 rounded-2xl border transition-all duration-500 bg-[#0d0b1d] ${currentStage.border} shadow-xl`}>
+                <div className={`p-6 sm:p-7 rounded-2xl border transition-all duration-500 bg-[#0d1726] ${currentStage.border} shadow-2xl`}>
+                  
                   <div className="flex items-center justify-between mb-4">
                     <span className={`text-xs font-black px-3 py-1 rounded-full border ${currentStage.tagColor}`}>
                       {currentStage.badge} • {currentStage.title}
                     </span>
-                    <span className="text-xs font-mono text-slate-400">
+                    <span className="text-xs font-mono text-teal-300">
                       مرحلة {currentStage.id} من 3
                     </span>
                   </div>
 
-                  <blockquote className="text-base sm:text-lg text-white font-bold leading-relaxed mb-4 min-h-[90px] flex items-center">
-                    {currentStage.text}
-                  </blockquote>
+                  <p className="text-base sm:text-lg text-white font-bold leading-relaxed mb-4 min-h-[75px] flex items-center">
+                    {currentStage.content}
+                  </p>
 
-                  <div className="p-3 rounded-xl bg-[#14112b] border border-[#231b46] text-xs text-slate-300 flex items-center gap-2">
-                    <SparklesIcon className="w-4 h-4 text-amber-400 shrink-0" />
-                    <span>{currentStage.summary}</span>
+                  <div className="space-y-2 pt-3 border-t border-[#1d2d44]">
+                    <div className="p-3 rounded-xl bg-[#121e30] border border-[#243750] text-xs text-slate-300 flex items-center gap-2">
+                      <SparklesIcon className="w-4 h-4 text-amber-400 shrink-0" />
+                      <span><strong>الهدف التسويقي:</strong> {currentStage.note}</span>
+                    </div>
+
+                    <div className="text-[11px] text-teal-300/90 font-mono">
+                      🎬 زاوية الكاميرا: {currentStage.cameraAngle}
+                    </div>
                   </div>
+
                 </div>
               </div>
 
             </div>
 
-            {/* Scrubber and Timeline Controls */}
-            <div className="mt-8 pt-6 border-t border-[#1c1639]">
+            {/* Timeline Controls & Scrubber */}
+            <div className="mt-8 pt-6 border-t border-[#1b2a3d]">
               
               {/* Progress Slider */}
               <div className="relative mb-4">
-                <div className="h-2 w-full bg-[#1b1738] rounded-full overflow-hidden">
+                <div className="h-2 w-full bg-[#172538] rounded-full overflow-hidden">
                   <div
-                    className="h-full bg-gradient-to-r from-purple-600 via-sky-400 to-emerald-400 transition-all duration-300"
+                    className="h-full bg-gradient-to-r from-rose-500 via-teal-400 to-emerald-400 transition-all duration-300"
                     style={{ width: `${(currentTime / 60) * 100}%` }}
                   ></div>
                 </div>
 
-                {/* Progress Thumb / Indicator */}
                 <div
-                  className="absolute top-1/2 -translate-y-1/2 w-4 h-4 rounded-full bg-white shadow-lg border-2 border-purple-600 transition-all pointer-events-none"
+                  className="absolute top-1/2 -translate-y-1/2 w-4 h-4 rounded-full bg-white shadow-lg border-2 border-teal-500 transition-all pointer-events-none"
                   style={{ left: `${(currentTime / 60) * 100}%` }}
                 ></div>
               </div>
 
-              {/* Playback Controls & Timestamp Jumps */}
+              {/* Action Buttons */}
               <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
                 
-                {/* Play/Pause Button + Time */}
                 <div className="flex items-center gap-3">
                   <button
                     onClick={togglePlay}
-                    className="w-12 h-12 rounded-2xl bg-gradient-to-tr from-purple-600 to-indigo-600 text-white flex items-center justify-center shadow-lg shadow-purple-600/30 hover:scale-105 active:scale-95 transition-all cursor-pointer"
+                    className="w-12 h-12 rounded-2xl bg-gradient-to-tr from-[#1E6E78] to-teal-500 text-white flex items-center justify-center shadow-lg shadow-teal-700/30 hover:scale-105 active:scale-95 transition-all cursor-pointer"
                   >
                     {isPlaying ? (
                       <PauseIcon className="w-5 h-5" />
@@ -254,34 +305,34 @@ export default function VideoScriptPlayer({
                   </div>
                 </div>
 
-                {/* Direct Stage Jump Buttons */}
+                {/* Stage Jumps */}
                 <div className="flex flex-wrap items-center gap-2">
-                  {SCRIPT_STAGES.map((stage) => (
+                  {PHASES.map((phase) => (
                     <button
-                      key={stage.id}
-                      onClick={() => jumpToStage(stage.start)}
+                      key={phase.id}
+                      onClick={() => jumpToStage(phase.start)}
                       className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
-                        currentStageIndex === stage.id - 1
-                          ? "bg-[#251e4d] text-purple-300 border border-purple-500/50 scale-105"
-                          : "bg-[#110e26] text-slate-400 hover:text-white border border-[#231b46]"
+                        currentStageIndex === phase.id - 1
+                          ? "bg-[#16273c] text-teal-300 border border-teal-500/60 scale-105"
+                          : "bg-[#0c1422] text-slate-400 hover:text-white border border-[#203147]"
                       }`}
                     >
-                      {stage.title.split(" ")[0]} ({stage.start}s)
+                      {phase.title.split(" ")[0]} ({phase.start}s)
                     </button>
                   ))}
                 </div>
 
-                {/* Trigger Lead Form Button */}
-                <button
-                  onClick={() => {
-                    soundFx.playChime();
-                    onOpenConsultation();
-                  }}
-                  className="px-4 py-2 rounded-xl text-xs font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 hover:bg-emerald-500/20 hover:scale-105 transition-all cursor-pointer flex items-center gap-1.5"
+                {/* Direct Kickoff CTA */}
+                <a
+                  href={whatsappUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => soundFx.playChime()}
+                  className="px-4 py-2 rounded-xl text-xs font-bold bg-teal-500/15 text-teal-300 border border-teal-500/30 hover:bg-teal-500/25 hover:scale-105 transition-all cursor-pointer flex items-center gap-1.5"
                 >
-                  <FileTextIcon className="w-3.5 h-3.5" />
-                  <span>تطبيق هذا العرض في مكتبك</span>
-                </button>
+                  <CheckCircle2Icon className="w-3.5 h-3.5 text-teal-400" />
+                  <span>بدء تصوير مشروعي القادم 🎬</span>
+                </a>
 
               </div>
 

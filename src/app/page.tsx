@@ -16,22 +16,25 @@ import {
   TrendingUpIcon,
   MessageCircleIcon,
   PhoneIcon,
-  ShieldCheckIcon,
 } from "../components/Icons";
 
-export default function FatDuckApp() {
-  const [activeTrack, setActiveTrack] = useState<"b2b" | "b2c" | "strategy">("b2b");
+export default function Wadi3App() {
+  const [activeTrack, setActiveTrack] = useState<"villas" | "developers" | "strategy">("villas");
   const [isConsultationOpen, setIsConsultationOpen] = useState(false);
 
-  const scrollToVideo = () => {
-    const el = document.getElementById("video-script");
+  const scrollToMedia = () => {
+    const el = document.getElementById("media-showcase");
     if (el) {
       el.scrollIntoView({ behavior: "smooth" });
     }
   };
 
+  const whatsappUrl = `https://wa.me/201220582340?text=${encodeURIComponent(
+    "أهلاً، اطلعت على خطة الهوية بتاعة Wadi3 وجاهز نبدأ التنفيذ!"
+  )}`;
+
   return (
-    <div className="min-h-screen flex flex-col bg-[#06060c] text-white selection:bg-purple-600 selection:text-white relative">
+    <div className="min-h-screen flex flex-col bg-[#090e17] text-white selection:bg-[#1E6E78] selection:text-white relative">
       
       {/* 1. Header Navigation */}
       <Header
@@ -46,47 +49,45 @@ export default function FatDuckApp() {
           activeTrack={activeTrack}
           setActiveTrack={setActiveTrack}
           onOpenConsultation={() => setIsConsultationOpen(true)}
-          onScrollToVideo={scrollToVideo}
+          onScrollToMedia={scrollToMedia}
         />
 
-        {/* 3. Interactive Video Script Breakdown (60s Hook / Authority / CTA) */}
-        <VideoScriptPlayer
-          onOpenConsultation={() => setIsConsultationOpen(true)}
-        />
+        {/* 3. Media Showcase: Cinematic Before & After (4K) with Script Breakdown */}
+        <VideoScriptPlayer />
 
         {/* 4. Active Track Section Content */}
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           {/* Section Divider with Track Title */}
-          <div className="py-6 border-b border-[#231b46] flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div className="py-6 border-b border-[#1f2d40] flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <div className="flex items-center gap-3">
               <div
                 className={`w-10 h-10 rounded-xl flex items-center justify-center font-bold text-slate-950 ${
-                  activeTrack === "b2b"
-                    ? "bg-sky-400"
-                    : activeTrack === "b2c"
-                    ? "bg-amber-400"
-                    : "bg-purple-500 text-white"
+                  activeTrack === "villas"
+                    ? "bg-teal-400"
+                    : activeTrack === "developers"
+                    ? "bg-cyan-400"
+                    : "bg-amber-400"
                 }`}
               >
-                {activeTrack === "b2b" ? (
-                  <BuildingIcon className="w-5 h-5" />
-                ) : activeTrack === "b2c" ? (
+                {activeTrack === "villas" ? (
                   <UsersIcon className="w-5 h-5" />
+                ) : activeTrack === "developers" ? (
+                  <BuildingIcon className="w-5 h-5" />
                 ) : (
                   <TrendingUpIcon className="w-5 h-5" />
                 )}
               </div>
               <div>
                 <h3 className="text-xl sm:text-2xl font-black text-white">
-                  {activeTrack === "b2b" && "تفاصيل مسار الشركات والمصانع (Corporate)"}
-                  {activeTrack === "b2c" && "تفاصيل مسار قضايا الأسرة والأفراد (Family Law)"}
-                  {activeTrack === "strategy" && "لوحة المقارنة وحاسبة العائد وخطة SHIFT"}
+                  {activeTrack === "villas" && "مسار الفلل والعملاء الأفراد (Fast Conversion)"}
+                  {activeTrack === "developers" && "مسار الشركات والمطورين العقاريين (High LTV)"}
+                  {activeTrack === "strategy" && "ركائز الاستراتيجية وحاسبة نمو الأعمال • SHIFT EDITION"}
                 </h3>
                 <p className="text-xs text-slate-400">
-                  {activeTrack === "b2b" && "نظام الحماية الوقائية للبيزنس وصياغة العقود والاستشارات السنوية"}
-                  {activeTrack === "b2c" && "استجابة فورية وحفظ كامل للحقوق والسرية التامة"}
-                  {activeTrack === "strategy" && "استراتيجية وقف حرق الميزانية وتوجيه الحملات الإعلانية في مكانها الصحيح"}
+                  {activeTrack === "villas" && "حدائق وملاعب الفلل والقصور، الشلالات ومناطق الـ BBQ الخاصة"}
+                  {activeTrack === "developers" && "عقود اللاندسكيب للكومباوندات، الملاعب الرياضية وعقود الصيانة المستمرة"}
+                  {activeTrack === "strategy" && "التوثيق السينمائي 4K، الهوية البصرية المتكاملة، الإعلانات الممولة ونظام الاستقبال الفوري"}
                 </p>
               </div>
             </div>
@@ -96,28 +97,28 @@ export default function FatDuckApp() {
               <button
                 onClick={() => {
                   soundFx.playTabSwitch();
-                  setActiveTrack("b2b");
+                  setActiveTrack("villas");
                 }}
                 className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
-                  activeTrack === "b2b"
-                    ? "bg-sky-500/20 text-sky-300 border border-sky-500/40"
+                  activeTrack === "villas"
+                    ? "bg-teal-500/20 text-teal-300 border border-teal-500/40"
                     : "text-slate-400 hover:text-white"
                 }`}
               >
-                سكة الشركات
+                مسار الفلل
               </button>
               <button
                 onClick={() => {
                   soundFx.playTabSwitch();
-                  setActiveTrack("b2c");
+                  setActiveTrack("developers");
                 }}
                 className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
-                  activeTrack === "b2c"
-                    ? "bg-amber-500/20 text-amber-300 border border-amber-500/40"
+                  activeTrack === "developers"
+                    ? "bg-cyan-500/20 text-cyan-300 border border-cyan-500/40"
                     : "text-slate-400 hover:text-white"
                 }`}
               >
-                سكة الأسرة
+                مسار المطورين
               </button>
               <button
                 onClick={() => {
@@ -126,62 +127,54 @@ export default function FatDuckApp() {
                 }}
                 className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
                   activeTrack === "strategy"
-                    ? "bg-purple-500/20 text-purple-300 border border-purple-500/40"
+                    ? "bg-amber-500/20 text-amber-300 border border-amber-500/40"
                     : "text-slate-400 hover:text-white"
                 }`}
               >
-                الخطة والحاسبة
+                خطة SHIFT
               </button>
             </div>
           </div>
 
           {/* Conditional Rendering of Track Content */}
-          {activeTrack === "b2b" && (
-            <CorporateTrack
-              onOpenConsultation={() => setIsConsultationOpen(true)}
-            />
-          )}
+          {activeTrack === "villas" && <FamilyLawTrack />}
 
-          {activeTrack === "b2c" && (
-            <FamilyLawTrack
-              onOpenConsultation={() => setIsConsultationOpen(true)}
-            />
-          )}
+          {activeTrack === "developers" && <CorporateTrack />}
 
           {activeTrack === "strategy" && <StrategyCalculator />}
 
           {/* Bottom Dual-Track Cross Navigator Banner */}
-          <div className="my-16 p-8 rounded-3xl glass-panel border border-[#2b2255] text-center relative overflow-hidden">
+          <div className="my-16 p-8 rounded-3xl glass-panel border border-[#223349] text-center relative overflow-hidden">
             <div className="max-w-2xl mx-auto space-y-4">
-              <span className="text-xs font-bold text-purple-400 uppercase tracking-wider">
-                استكشف المسار الموازي
+              <span className="text-xs font-bold text-teal-400 uppercase tracking-wider">
+                استكشف خدمات Wadi3 الأخرى
               </span>
               <h4 className="text-xl sm:text-2xl font-black text-white">
-                {activeTrack === "b2b"
-                  ? "هل تبحث عن استشارة شخصية أو عائلية؟"
-                  : "هل تدير شركة أو مصنعاً وتريد حماية استثماراتك؟"}
+                {activeTrack === "villas"
+                  ? "هل تدير مشروع تطوير عقاري أو كومباوند سياحي؟"
+                  : "هل تريد تصميم أو تجديد حديقة وملعب فيلتك الخاصة؟"}
               </h4>
               <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
-                {activeTrack === "b2b"
-                  ? "نوفر قسماً مستقلاً متخصصاً في قضايا الأحوال الشخصية ومحكمة الأسرة بأعلى درجات السرية والسرعة."
-                  : "نوفر قسماً متخصصاً للشركات وصياغة العقود وحماية الاستثمارات وتأسيس الكيانات القانونية."}
+                {activeTrack === "villas"
+                  ? "نوفر قسماً متخصصاً للمقايسات الكبرى، ملاعب الأندية، وتنسيق حدائق الكومباوندات بأعلى المواصفات الهندسية."
+                  : "نوفر قسماً مخصصاً للفلل والقصور السكنية مع تشكيلات شلالات وإنارة ذكية وضمان شامل."}
               </p>
               <div>
                 <button
                   onClick={() => {
                     soundFx.playTabSwitch();
-                    setActiveTrack(activeTrack === "b2b" ? "b2c" : "b2b");
+                    setActiveTrack(activeTrack === "villas" ? "developers" : "villas");
                     window.scrollTo({ top: 400, behavior: "smooth" });
                   }}
                   className={`px-6 py-3 rounded-xl font-bold text-xs sm:text-sm cursor-pointer transition-all hover:scale-105 shadow-lg ${
-                    activeTrack === "b2b"
-                      ? "bg-amber-500 text-slate-950 shadow-amber-500/20 hover:bg-amber-400"
-                      : "bg-sky-500 text-slate-950 shadow-sky-500/20 hover:bg-sky-400"
+                    activeTrack === "villas"
+                      ? "bg-cyan-500 text-slate-950 shadow-cyan-500/20 hover:bg-cyan-400"
+                      : "bg-teal-500 text-slate-950 shadow-teal-500/20 hover:bg-teal-400"
                   }`}
                 >
-                  {activeTrack === "b2b"
-                    ? "الانتقال إلى سكة قضايا الأسرة (B2C) ←"
-                    : "الانتقال إلى سكة الشركات والمصانع (B2B) ←"}
+                  {activeTrack === "villas"
+                    ? "الانتقال إلى مسار المطورين والشركات (High LTV) ←"
+                    : "الانتقال إلى مسار الفلل والعملاء الأفراد (Fast Conversion) ←"}
                 </button>
               </div>
             </div>
@@ -203,10 +196,10 @@ export default function FatDuckApp() {
         defaultTrack={activeTrack}
       />
 
-      {/* 7. Floating Action Bar for Mobile & Instant Access */}
+      {/* 7. Floating Action Bar for Mobile & Instant WhatsApp Access */}
       <div className="fixed bottom-4 left-4 z-40 flex items-center gap-2 sm:hidden">
         <a
-          href="https://wa.me/201000000000"
+          href={whatsappUrl}
           target="_blank"
           rel="noopener noreferrer"
           onClick={() => soundFx.playClick(800)}
@@ -221,10 +214,10 @@ export default function FatDuckApp() {
             soundFx.playChime();
             setIsConsultationOpen(true);
           }}
-          className="px-4 py-3 rounded-full bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-bold text-xs shadow-xl shadow-purple-600/40 flex items-center gap-2 cursor-pointer"
+          className="px-4 py-3 rounded-full bg-gradient-to-r from-teal-500 to-[#1E6E78] text-white font-bold text-xs shadow-xl shadow-teal-700/40 flex items-center gap-2 cursor-pointer"
         >
           <PhoneIcon className="w-4 h-4" />
-          <span>استشارة فورية</span>
+          <span>حجز معاينة</span>
         </button>
       </div>
 

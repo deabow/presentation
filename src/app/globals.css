@@ -2,107 +2,78 @@
 
 @layer base {
   :root {
-    --background: #06060c;
+    --background: #090e17;
     --foreground: #f8fafc;
-    --card: #0d0b1a;
-    --card-hover: #141228;
-    --border: #231b46;
-    --purple-primary: #a855f7;
-    --purple-glow: rgba(168, 85, 247, 0.35);
-    --cyan-primary: #38bdf8;
-    --cyan-glow: rgba(56, 189, 248, 0.35);
-    --gold-primary: #f59e0b;
-    --gold-glow: rgba(245, 158, 11, 0.35);
+    --teal-primary: #1E6E78;
+    --teal-light: #2dd4bf;
+    --teal-glow: rgba(30, 110, 120, 0.35);
+    --navy-deep: #0e1626;
+    --navy-card: #151f32;
+    --navy-border: #24344d;
+    --gold-accent: #f59e0b;
   }
 
   * {
-    border-color: var(--border);
+    border-color: #24344d;
     scroll-behavior: smooth;
   }
 
   body {
-    background-color: var(--background);
-    color: var(--foreground);
+    background-color: #090e17;
+    color: #f8fafc;
     background-image: 
-      radial-gradient(circle at 15% 15%, rgba(168, 85, 247, 0.12) 0%, transparent 40%),
-      radial-gradient(circle at 85% 25%, rgba(56, 189, 248, 0.08) 0%, transparent 35%),
-      radial-gradient(circle at 50% 85%, rgba(124, 58, 237, 0.1) 0%, transparent 50%);
+      radial-gradient(circle at 15% 15%, rgba(30, 110, 120, 0.18) 0%, transparent 45%),
+      radial-gradient(circle at 85% 25%, rgba(45, 212, 191, 0.1) 0%, transparent 40%),
+      radial-gradient(circle at 50% 85%, rgba(44, 52, 68, 0.3) 0%, transparent 50%);
     background-attachment: fixed;
     min-height: 100vh;
     overflow-x: hidden;
-    selection-background-color: #a855f7;
+    selection-background-color: #1E6E78;
     selection-color: #ffffff;
   }
 }
 
-/* Custom visual utilities for rich glassmorphism & micro-interactions */
+/* Glassmorphic Panels tailored for Wadi3 Landscape (Teal & Navy) */
 .glass-panel {
-  background: rgba(12, 11, 22, 0.75);
+  background: rgba(15, 23, 38, 0.8);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(168, 85, 247, 0.18);
-  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  border: 1px solid rgba(45, 212, 191, 0.18);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.45);
 }
 
-.glass-panel-cyan {
-  background: rgba(8, 14, 28, 0.75);
+.glass-panel-teal {
+  background: rgba(14, 34, 44, 0.85);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(56, 189, 248, 0.25);
-  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  border: 1px solid rgba(45, 212, 191, 0.3);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.45);
 }
 
-.glass-panel-gold {
-  background: rgba(24, 16, 8, 0.75);
+.glass-panel-navy {
+  background: rgba(21, 31, 50, 0.85);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(245, 158, 11, 0.25);
-  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  border: 1px solid rgba(56, 189, 248, 0.2);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.45);
 }
 
-.glow-purple {
-  box-shadow: 0 0 25px -3px rgba(168, 85, 247, 0.35);
-}
-
-.glow-cyan {
-  box-shadow: 0 0 25px -3px rgba(56, 189, 248, 0.35);
-}
-
-.glow-gold {
-  box-shadow: 0 0 25px -3px rgba(245, 158, 11, 0.35);
-}
-
-.text-gradient-purple {
-  background: linear-gradient(135deg, #ffffff 0%, #d8b4fe 60%, #c084fc 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.text-gradient-cyan {
-  background: linear-gradient(135deg, #ffffff 0%, #7dd3fc 60%, #38bdf8 100%);
+.text-gradient-teal {
+  background: linear-gradient(135deg, #ffffff 0%, #5eead4 50%, #1E6E78 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 .text-gradient-gold {
-  background: linear-gradient(135deg, #ffffff 0%, #fde68a 60%, #fbbf24 100%);
+  background: linear-gradient(135deg, #ffffff 0%, #fde68a 50%, #f59e0b 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
-/* Animations */
-@keyframes pulse-subtle {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.85; transform: scale(1.02); }
-}
-
+/* Audio waves & pulses */
 @keyframes wave-bar {
-  0%, 100% { height: 12px; }
-  50% { height: 32px; }
-}
-
-.animate-pulse-subtle {
-  animation: pulse-subtle 3s ease-in-out infinite;
+  0%, 100% { height: 10px; }
+  50% { height: 28px; }
 }
 
 .wave-bar-1 { animation: wave-bar 1.2s ease-in-out infinite 0.1s; }
@@ -117,12 +88,12 @@
   height: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: #06060c;
+  background: #090e17;
 }
 ::-webkit-scrollbar-thumb {
-  background: #272147;
+  background: #1e3a45;
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #a855f7;
+  background: #2dd4bf;
 }

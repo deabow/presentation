@@ -2,256 +2,235 @@
 
 import React, { useState } from "react";
 import {
+  SparklesIcon,
+  CheckCircle2Icon,
   CalculatorIcon,
   TrendingUpIcon,
-  ShieldCheckIcon,
-  SparklesIcon,
-  BuildingIcon,
   UsersIcon,
-  CheckCircle2Icon,
-  SearchIcon,
+  BuildingIcon,
+  PhoneIcon,
+  MessageCircleIcon,
   AwardIcon,
 } from "./Icons";
 import { soundFx } from "./SoundEffects";
 
-export default function StrategyCalculator() {
-  const [contractsCount, setContractsCount] = useState<number>(15);
-  const [avgDealValue, setAvgDealValue] = useState<number>(500); // thousands EGP
-  const [disputeRiskRate] = useState<number>(0.12); // 12% probability of dispute without firm review
+const STRATEGY_PILLARS = [
+  {
+    num: 1,
+    title: "توثيق سينمائي: قبل وبعد",
+    tag: "فرق يبان بالعين",
+    tagColor: "bg-teal-500/15 text-teal-300 border-teal-500/30",
+    description:
+      "الفيديوهات القديمة كانت بتوثق شغل ممتاز بجودة تصوير ضعيفة، وده بيقلل من قيمته في عين العميل. هنعيد تصوير كل مشروع جديد بمعايير تسويقية عالية توضح الفرق الحقيقي بين الأرض قبل وبعد.",
+    result: "فيديوهات 4K تجعل العميل يثق في النتيجة قبل توقيع العقد.",
+  },
+  {
+    num: 2,
+    title: "تصميم هوية بصرية متكاملة",
+    tag: "احترافية من أول نظرة",
+    tagColor: "bg-cyan-500/15 text-cyan-300 border-cyan-500/30",
+    description:
+      "بناء هوية Wadi3 على السوشيال ميديا والموقع بشكل يعكس مستوى شغل لاند سكيب راقي ومحترف، بدل ما تفضل الهوية أضعف من التنفيذ الحقيقي على الأرض.",
+    result: "انطباع أولي فخم يضع Wadi3 في فئة مقاولي النخبة.",
+  },
+  {
+    num: 3,
+    title: "حملات تسويق ممولة وموجهة",
+    tag: "عملاء جادين فقط",
+    tagColor: "bg-amber-500/15 text-amber-300 border-amber-500/30",
+    description:
+      "استهداف أصحاب الفلل والمشاريع الجادة اللي بيدوروا فعليًا على مقاول لاند سكيب موثوق في مناطق التجمع، زايد، والشروق، بدل الاعتماد على التوصيات والمعارف فقط.",
+    result: "تدفق مستمر للعملاء (+15 فرصة جديدة شهرياً).",
+  },
+  {
+    num: 4,
+    title: "نظام استقبال وتقييم الفرص",
+    tag: "صفر فرص ضايعة",
+    tagColor: "bg-emerald-500/15 text-emerald-300 border-emerald-500/30",
+    description:
+      "ضمان الرد السريع على كل استفسار جديد وتصنيفه فوراً، بحيث لا تضيع فرصة بيع واحدة بسبب التأخير في الرد، مع متابعة احترافية حتى إتمام التعاقد.",
+    result: "سرعة استجابة في أقل من 15 دقيقة ترفع نسبة الإغلاق (Closing).",
+  },
+];
 
-  // Calculated figures
-  const totalExposure = contractsCount * avgDealValue * 1000;
-  const estimatedPotentialLoss = Math.round(totalExposure * disputeRiskRate * 0.4); // 40% loss if breached
-  const annualRetainerCost = 120000; // 120k EGP/year retainer baseline
-  const estimatedSavings = Math.max(0, estimatedPotentialLoss - annualRetainerCost);
-  const roiPercentage = Math.round((estimatedSavings / annualRetainerCost) * 100);
+export default function StrategyCalculator() {
+  const [projectsCount, setProjectsCount] = useState<number>(4);
+  const [avgProjectValue, setAvgProjectValue] = useState<number>(350); // thousands EGP
+
+  const totalMonthlyVolume = projectsCount * avgProjectValue * 1000;
+  const totalAnnualVolume = totalMonthlyVolume * 12;
+  const growthRate = 2.4; // 240% increase in deal size & qualified leads with 4K branding
+
+  const whatsappUrl = `https://wa.me/201220582340?text=${encodeURIComponent(
+    "أهلاً، اطلعت على خطة الهوية بتاعة Wadi3 وجاهز نبدأ التنفيذ!"
+  )}`;
 
   return (
     <div className="py-12 space-y-16">
       
-      {/* Overview Banner */}
-      <div className="glass-panel p-8 rounded-3xl border border-purple-500/30 relative overflow-hidden">
+      {/* Strategy Intro */}
+      <div className="glass-panel p-8 rounded-3xl border border-teal-500/30 relative overflow-hidden">
         <div className="max-w-3xl">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-500/10 border border-purple-500/30 text-purple-300 text-xs font-bold mb-3">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-teal-500/10 border border-teal-500/30 text-teal-300 text-xs font-bold mb-3">
             <SparklesIcon className="w-3.5 h-3.5" />
-            <span>رؤية SHIFT AGENCY التقنية والتسويقية</span>
+            <span>خطة SHIFT GROWTH EDITION لمضاعفة أعمال وديع لاندسكيب</span>
           </div>
           <h3 className="text-2xl sm:text-3xl font-black text-white">
-            لماذا كان من الضروري فصل الحملات ووقف حرق الميزانية؟
+            ركائز الاستراتيجية الأربعة لنقل Wadi3 لفئة مقاولي النخبة
           </h3>
           <p className="text-slate-300 text-sm mt-3 leading-relaxed">
-            الدمج بين زبون الشركات (B2B) وزبون قضايا الأسرة (B2C) في صفحة واحدة أو حملة إعلانية واحدة كان يتسبب في تشتيت الزائر وضياع ميزانية جوجل، وخفض نسبة التحويل (Conversion Rate). كل فئة لها عقلية وسلوك وتكلفة مختلفة تماماً.
+            الفرق بين المقاول اللي شغال بالمعارف والصدفة، وبين البراند اللي أصحاب الفلل والشركات بيتمنوا يتعاقدوا معاه، هو <strong className="text-teal-300">طريقة العرض والتوثيق والوصول المدروس</strong>.
           </p>
         </div>
       </div>
 
-      {/* Comparison Matrix Table (Section 1 in proposal) */}
-      <div className="glass-panel rounded-3xl border border-[#271f4e] overflow-hidden shadow-xl">
-        <div className="p-6 border-b border-[#231b46] bg-[#0c091d] flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-          <div>
-            <h4 className="text-lg font-black text-white">
-              مقارنة استراتيجية: سكة الشركات (B2B) مقابل سكة الأسرة (B2C)
+      {/* 4 Strategy Pillars Grid */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {STRATEGY_PILLARS.map((pillar) => (
+          <div
+            key={pillar.num}
+            className="glass-panel p-7 rounded-3xl border border-[#24344d] hover:border-teal-500/50 transition-all duration-300 relative group hover:-translate-y-1"
+          >
+            <div className="flex items-center justify-between mb-4">
+              <span className="w-10 h-10 rounded-2xl bg-[#132337] border border-[#243750] text-teal-300 font-black flex items-center justify-center text-lg group-hover:scale-110 transition-transform">
+                0{pillar.num}
+              </span>
+              <span className={`text-xs font-bold px-3 py-1 rounded-full border ${pillar.tagColor}`}>
+                {pillar.tag}
+              </span>
+            </div>
+
+            <h4 className="text-xl font-bold text-white mb-2.5">
+              {pillar.title}
             </h4>
-            <p className="text-xs text-slate-400 mt-0.5">
-              كيف صممنا التجربة لتناسب كل عقلية وتحقق أقصى ربحية ممكنة
+
+            <p className="text-xs sm:text-sm text-slate-300 leading-relaxed mb-4">
+              {pillar.description}
             </p>
+
+            <div className="pt-3 border-t border-[#1a283b] flex items-center gap-2 text-xs text-teal-300 font-semibold">
+              <CheckCircle2Icon className="w-4 h-4 text-teal-400 shrink-0" />
+              <span>{pillar.result}</span>
+            </div>
           </div>
-          <span className="px-3 py-1 rounded-full text-xs font-bold bg-purple-500/20 text-purple-300 border border-purple-500/30 self-start">
-            مصفوفة SHIFT
-          </span>
-        </div>
-
-        <div className="overflow-x-auto">
-          <table className="w-full text-right border-collapse">
-            <thead>
-              <tr className="border-b border-[#231b46] bg-[#120e29] text-xs font-bold text-slate-300">
-                <th className="p-4 sm:p-5 w-1/4">وجه المقارنة</th>
-                <th className="p-4 sm:p-5 w-3/8 text-sky-400 bg-sky-500/5">
-                  <span className="flex items-center gap-1.5">
-                    <BuildingIcon className="w-4 h-4" />
-                    سكة الشركات والمصانع (B2B)
-                  </span>
-                </th>
-                <th className="p-4 sm:p-5 w-3/8 text-amber-400 bg-amber-500/5">
-                  <span className="flex items-center gap-1.5">
-                    <UsersIcon className="w-4 h-4" />
-                    سكة قضايا الأسرة والأفراد (B2C)
-                  </span>
-                </th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-[#1e173e] text-xs sm:text-sm">
-              <tr className="hover:bg-white/[0.02] transition-colors">
-                <td className="p-4 sm:p-5 font-bold text-white bg-[#0e0b21]/50">
-                  دماغ وسلوك الزبون
-                </td>
-                <td className="p-4 sm:p-5 text-slate-300 bg-sky-500/[0.02]">
-                  صاحب بيزنس عقلاني يبحث عن حماية أرباحه، استقرار عقوده، والوقاية من النزاعات قبل بدئها.
-                </td>
-                <td className="p-4 sm:p-5 text-slate-300 bg-amber-500/[0.02]">
-                  زبون متوتر يمر بظرف عائلي طارئ، يبحث عن حل فوري وسرية تامة وشخص يطمئنه على حقوقه وأولاده.
-                </td>
-              </tr>
-
-              <tr className="hover:bg-white/[0.02] transition-colors">
-                <td className="p-4 sm:p-5 font-bold text-white bg-[#0e0b21]/50">
-                  صفحة الهبوط (Landing Page)
-                </td>
-                <td className="p-4 sm:p-5 text-slate-300 bg-sky-500/[0.02]">
-                  تصميم فخم ومهيب، فيديو موجه من المستشار كمال (60 ثانية)، ونموذج تأهيل بيانات للشركات.
-                </td>
-                <td className="p-4 sm:p-5 text-slate-300 bg-amber-500/[0.02]">
-                  صفحة خفيفة وسريعة التصفح، شات واتساب مباشر، اتصال بنقرة واحدة، وتعهد سرية بارز.
-                </td>
-              </tr>
-
-              <tr className="hover:bg-white/[0.02] transition-colors">
-                <td className="p-4 sm:p-5 font-bold text-white bg-[#0e0b21]/50">
-                  طريقة المزايدة في Google Ads
-                </td>
-                <td className="p-4 sm:p-5 text-slate-300 bg-sky-500/[0.02]">
-                  استهداف دقيق لكلمات البحث ذات النية المؤسسية: (محامي شركات، تأسيس مصانع، صياغة عقود تجارية).
-                </td>
-                <td className="p-4 sm:p-5 text-slate-300 bg-amber-500/[0.02]">
-                  استهداف كلمات البحث السريعة للباحثين عن حل مستعجل: (محامي طلاق، محامي خلع شاطر، نفقة).
-                </td>
-              </tr>
-
-              <tr className="hover:bg-white/[0.02] transition-colors">
-                <td className="p-4 sm:p-5 font-bold text-white bg-[#0e0b21]/50">
-                  المصلحة والعائد المالي
-                </td>
-                <td className="p-4 sm:p-5 text-sky-300 font-semibold bg-sky-500/[0.04]">
-                  عقود استشارات سنوية وقضايا تجارية كبرى (شغل البطة السمينة ذو العائد الضخم والمستمر).
-                </td>
-                <td className="p-4 sm:p-5 text-amber-300 font-semibold bg-amber-500/[0.04]">
-                  سيولة نقدية سريعة، أتعاب فورية تدور عجلة المكتب باستمرار ومصروفات فورية.
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+        ))}
       </div>
 
-      {/* Interactive ROI & Retainer Calculator */}
-      <div className="glass-panel p-8 rounded-3xl border border-purple-500/30">
+      {/* Interactive Growth Simulator */}
+      <div className="glass-panel p-8 rounded-3xl border border-teal-500/30">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
           <div>
-            <div className="inline-flex items-center gap-2 text-xs font-bold text-purple-400 mb-1">
+            <div className="inline-flex items-center gap-2 text-xs font-bold text-teal-400 mb-1">
               <CalculatorIcon className="w-4 h-4" />
-              <span>حاسبة القيمة والعائد للشركات والمصانع</span>
+              <span>محاكاة نمو التعاقدات والأعمال</span>
             </div>
             <h4 className="text-xl sm:text-2xl font-black text-white">
-              احسب الوفر المالي لشركتك من الحماية القانونية السنوية
+              حاسبة نمو مشاريع Wadi3 مع استراتيجية SHIFT
             </h4>
           </div>
           <span className="text-xs text-slate-400">
-            مبنية على معدلات نزاعات العقود التجارية في السوق المصري
+            مبنية على استهداف أصحاب الفلل بالمدن الجديدة
           </span>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
           
-          {/* Sliders Input Column */}
           <div className="lg:col-span-6 space-y-6">
             
-            {/* Slider 1: Contracts Count */}
-            <div className="p-5 rounded-2xl bg-[#090714] border border-[#231b46]">
+            <div className="p-5 rounded-2xl bg-[#09111c] border border-[#24344d]">
               <div className="flex justify-between items-center mb-3 text-sm">
                 <label className="font-bold text-slate-200">
-                  عدد العقود السنوية للشركة (توريد، تشغيل، شراكة):
+                  عدد المشاريع المستهدفة شهرياً (فلل / ملاعب):
                 </label>
-                <span className="text-base font-black text-sky-400 font-mono">
-                  {contractsCount} عقد
+                <span className="text-base font-black text-teal-300 font-mono">
+                  {projectsCount} مشاريع
                 </span>
               </div>
               <input
                 type="range"
-                min="3"
-                max="80"
-                value={contractsCount}
+                min="1"
+                max="15"
+                value={projectsCount}
                 onChange={(e) => {
                   soundFx.playClick(400);
-                  setContractsCount(Number(e.target.value));
+                  setProjectsCount(Number(e.target.value));
                 }}
-                className="w-full accent-sky-400 cursor-pointer h-2 bg-[#1c1639] rounded-lg"
+                className="w-full accent-teal-400 cursor-pointer h-2 bg-[#172538] rounded-lg"
               />
               <div className="flex justify-between text-[11px] text-slate-500 mt-1 font-mono">
-                <span>3 عقود</span>
-                <span>40 عقد</span>
-                <span>80 عقد</span>
+                <span>مشروع واحد</span>
+                <span>8 مشاريع</span>
+                <span>15 مشروع</span>
               </div>
             </div>
 
-            {/* Slider 2: Deal Value */}
-            <div className="p-5 rounded-2xl bg-[#090714] border border-[#231b46]">
+            <div className="p-5 rounded-2xl bg-[#09111c] border border-[#24344d]">
               <div className="flex justify-between items-center mb-3 text-sm">
                 <label className="font-bold text-slate-200">
-                  متوسط قيمة الصفقة أو العقد الواحد:
+                  متوسط قيمة المشروع أو الحديقة:
                 </label>
-                <span className="text-base font-black text-purple-400 font-mono">
-                  {(avgDealValue * 1000).toLocaleString("ar-EG")} ج.م
+                <span className="text-base font-black text-cyan-300 font-mono">
+                  {(avgProjectValue * 1000).toLocaleString("ar-EG")} ج.م
                 </span>
               </div>
               <input
                 type="range"
-                min="50"
-                max="2500"
+                min="100"
+                max="1500"
                 step="50"
-                value={avgDealValue}
+                value={avgProjectValue}
                 onChange={(e) => {
                   soundFx.playClick(450);
-                  setAvgDealValue(Number(e.target.value));
+                  setAvgProjectValue(Number(e.target.value));
                 }}
-                className="w-full accent-purple-500 cursor-pointer h-2 bg-[#1c1639] rounded-lg"
+                className="w-full accent-cyan-400 cursor-pointer h-2 bg-[#172538] rounded-lg"
               />
               <div className="flex justify-between text-[11px] text-slate-500 mt-1 font-mono">
-                <span>50 ألف ج.م</span>
-                <span>1.2 مليون ج.م</span>
-                <span>2.5 مليون ج.م</span>
+                <span>100 ألف ج.م</span>
+                <span>750 ألف ج.م</span>
+                <span>1.5 مليون ج.م</span>
               </div>
             </div>
 
           </div>
 
-          {/* Output Display Column */}
-          <div className="lg:col-span-6 glass-panel-cyan p-6 sm:p-8 rounded-3xl border border-sky-500/30 relative">
-            <div className="text-xs font-bold text-sky-300 uppercase tracking-wider mb-2">
-              النتيجة التقديرية لحماية أصولك
+          <div className="lg:col-span-6 glass-panel-teal p-6 sm:p-8 rounded-3xl border border-teal-500/40">
+            <div className="text-xs font-bold text-teal-300 uppercase tracking-wider mb-2">
+              العائد التقديري بعد إطلاق الهوية والتوثيق 4K
             </div>
 
             <div className="space-y-4 mb-6">
-              <div className="flex justify-between items-center text-xs sm:text-sm py-2 border-b border-[#211b43]">
-                <span className="text-slate-400">إجمالي حجم التعاقدات السنوية المعرضة للخطر:</span>
+              <div className="flex justify-between items-center text-xs sm:text-sm py-2 border-b border-[#21384a]">
+                <span className="text-slate-300">حجم الأعمال الشهري المستهدف:</span>
                 <span className="font-bold text-white font-mono">
-                  {totalExposure.toLocaleString("ar-EG")} ج.م
+                  {totalMonthlyVolume.toLocaleString("ar-EG")} ج.م
                 </span>
               </div>
 
-              <div className="flex justify-between items-center text-xs sm:text-sm py-2 border-b border-[#211b43]">
-                <span className="text-rose-400">الخسارة المحتملة من ثغرة واحدة غير مغلقة:</span>
-                <span className="font-bold text-rose-400 font-mono">
-                  {estimatedPotentialLoss.toLocaleString("ar-EG")} ج.م
+              <div className="flex justify-between items-center text-xs sm:text-sm py-2 border-b border-[#21384a]">
+                <span className="text-slate-300">حجم الأعمال السنوي المتوقع:</span>
+                <span className="font-bold text-teal-300 font-mono">
+                  {totalAnnualVolume.toLocaleString("ar-EG")} ج.م
                 </span>
               </div>
 
-              <div className="flex justify-between items-center text-xs sm:text-sm py-2 border-b border-[#211b43]">
-                <span className="text-slate-400">تكلفة الاشتراك السنوي للاستشارات والحماية:</span>
-                <span className="font-bold text-slate-300 font-mono">
-                  {annualRetainerCost.toLocaleString("ar-EG")} ج.م
+              <div className="flex justify-between items-center text-xs sm:text-sm py-2 border-b border-[#21384a]">
+                <span className="text-slate-300">الفرص الشهرية المؤهلة (Leads):</span>
+                <span className="font-bold text-cyan-300 font-mono">
+                  +15 عميل جاد شهرياً
                 </span>
               </div>
             </div>
 
-            <div className="p-4 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 text-center">
-              <span className="text-xs font-bold text-emerald-400 block mb-1">
-                صافي الوفر المالي المحقق لبيزنسك:
+            <div className="p-4 rounded-2xl bg-emerald-500/15 border border-emerald-500/30 text-center">
+              <span className="text-xs font-bold text-emerald-300 block mb-1">
+                تأثير التوثيق الفاخر على سرعة إتمام الصفقات:
               </span>
-              <div className="text-3xl font-black text-emerald-400 font-mono">
-                +{estimatedSavings.toLocaleString("ar-EG")} ج.م
+              <div className="text-2xl sm:text-3xl font-black text-emerald-400 font-mono">
+                مضاعفة التحويل 2.4x
               </div>
-              <span className="text-[11px] text-emerald-300/80 mt-1 inline-block">
-                عائد استثمار قانوني تقديري (ROI): <strong>+{roiPercentage}%</strong>
+              <span className="text-[11px] text-emerald-200/80 mt-1 inline-block">
+                العميل يتخذ قرار التعاقد فور رؤية الفيديو قبل وبعد
               </span>
             </div>
           </div>
@@ -259,55 +238,38 @@ export default function StrategyCalculator() {
         </div>
       </div>
 
-      {/* SHIFT Implementation 3-Step Workflow (Section 5 in proposal) */}
-      <div>
-        <div className="text-center mb-8">
-          <h4 className="text-xl sm:text-2xl font-black text-white">
-            مراحل تسليم وتنفيذ الشغل (SHIFT Workflow)
+      {/* Action Kickoff Banner (User Specification) */}
+      <div className="glass-panel p-8 sm:p-12 rounded-3xl border border-teal-500/40 text-center relative overflow-hidden bg-gradient-to-br from-[#0e1d2c] via-[#0b1724] to-[#070e17]">
+        <div className="max-w-2xl mx-auto space-y-4 relative z-10">
+          <div className="w-14 h-14 rounded-2xl bg-teal-500/20 text-teal-300 border border-teal-500/30 flex items-center justify-center mx-auto text-2xl">
+            🚀
+          </div>
+          <h4 className="text-2xl sm:text-4xl font-black text-white">
+            جاهز نبدأ التنفيذ؟
           </h4>
-          <p className="text-xs sm:text-sm text-slate-400 mt-1">
-            خطة عمل واضحة بدون تعقيد لضمان تسليم الشغل في أسرع وقت وبأعلى جودة.
+          <p className="text-sm sm:text-base text-slate-200 leading-relaxed">
+            شوف إزاي شغلك يتحول لعرض تسويقي يجيب عملاء بنفسه. تقدر تحجز جلسة فورية أو نتواصل مباشرة على الواتساب.
           </p>
-        </div>
+          <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
+            <a
+              href={whatsappUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => soundFx.playChime()}
+              className="w-full sm:w-auto px-8 py-4 rounded-2xl font-black text-sm sm:text-base bg-gradient-to-r from-teal-500 via-[#1E6E78] to-cyan-500 text-white shadow-xl shadow-teal-700/40 hover:scale-105 active:scale-95 transition-all flex items-center justify-center gap-3 cursor-pointer"
+            >
+              <MessageCircleIcon className="w-5 h-5" />
+              <span>تواصل واتساب مع م. وديع الآن</span>
+            </a>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div className="glass-panel p-6 rounded-2xl border border-[#2b2255]">
-            <div className="w-9 h-9 rounded-xl bg-purple-600 text-white font-black flex items-center justify-center mb-4 shadow-lg shadow-purple-600/30">
-              1
-            </div>
-            <h5 className="text-base font-bold text-white mb-2">تجهيز الصفحات والبيكسل</h5>
-            <p className="text-xs text-slate-400 leading-relaxed">
-              بناء صفحة الشركات `corporate` وصفحة الأسرة `family-law` وربط البيكسل وتراكينج التحويلات بدقة متناهية.
-            </p>
-            <div className="mt-4 text-[11px] text-purple-300 font-semibold">
-              تيم البرمجة (SHIFT)
-            </div>
-          </div>
-
-          <div className="glass-panel p-6 rounded-2xl border border-[#2b2255]">
-            <div className="w-9 h-9 rounded-xl bg-sky-500 text-slate-950 font-black flex items-center justify-center mb-4 shadow-lg shadow-sky-500/30">
-              2
-            </div>
-            <h5 className="text-base font-bold text-white mb-2">تصوير وإنتاج الفيديو</h5>
-            <p className="text-xs text-slate-400 leading-relaxed">
-              جلسة تصوير احترافية مع البوب كمال في المكتب، ومونتاج سريع بالهوية البنفسجية الفخمة لإبراز الثقل والهيبة.
-            </p>
-            <div className="mt-4 text-[11px] text-sky-400 font-semibold">
-              تيم الميديا والإنتاج (SHIFT)
-            </div>
-          </div>
-
-          <div className="glass-panel p-6 rounded-2xl border border-[#2b2255]">
-            <div className="w-9 h-9 rounded-xl bg-emerald-500 text-slate-950 font-black flex items-center justify-center mb-4 shadow-lg shadow-emerald-500/30">
-              3
-            </div>
-            <h5 className="text-base font-bold text-white mb-2">إطلاق الحملات وضبط المزايدة</h5>
-            <p className="text-xs text-slate-400 leading-relaxed">
-              تدشين الحملتين على Google Search وميتا كل حملة بكلماتها وميزانيتها وصفحتها، ووقف هدر الميزانيات السابقة.
-            </p>
-            <div className="mt-4 text-[11px] text-emerald-400 font-semibold">
-              تيم الميديا باينج (SHIFT)
-            </div>
+            <a
+              href="tel:+201220582340"
+              onClick={() => soundFx.playClick()}
+              className="w-full sm:w-auto px-6 py-4 rounded-2xl font-bold text-sm text-slate-200 border border-[#24344d] hover:bg-white/5 transition-all flex items-center justify-center gap-2"
+            >
+              <PhoneIcon className="w-4 h-4 text-teal-400" />
+              <span>اتصال هاتفي: 01220582340</span>
+            </a>
           </div>
         </div>
       </div>
