@@ -5,9 +5,8 @@ import {
   PlayIcon,
   PauseIcon,
   SparklesIcon,
-  ShieldCheckIcon,
-  AwardIcon,
   CheckCircle2Icon,
+  MessageCircleIcon,
 } from "./Icons";
 import { soundFx } from "./SoundEffects";
 
@@ -21,9 +20,9 @@ const PHASES = [
     color: "from-rose-500 to-amber-600",
     border: "border-rose-500/30",
     tagColor: "bg-rose-500/10 text-rose-300 border-rose-500/20",
-    content: "لقطات للأرض أو الملعب قبل التنفيذ، موثقة بجودة تصوير ضعيفة وغير مدروسة كما كانت من قبل في الفيديوهات القديمة.",
-    note: "إظهار الفرق الحقيقي في القيمة اللي كانت بتضيع بسبب ضعف التوثيق.",
-    cameraAngle: "لقطة أرضية واسعة • إضاءة خافتة • توثيق غير احترافي",
+    content: "لقطات للأرض أو الملعب قبل التنفيذ، موثقة بجودة تصوير ضعيفة وغير مدروسة كما كانت من قبل",
+    note: "إظهار الفرق الحقيقي في القيمة اللي كانت بتضيع بسبب ضعف التوثيق",
+    cameraAngle: "لقطة أرضية واسعة • إضاءة خافتة • توثيق غير احترافي يظلم شغلك",
   },
   {
     id: 2,
@@ -34,9 +33,9 @@ const PHASES = [
     color: "from-teal-500 to-cyan-600",
     border: "border-teal-500/40",
     tagColor: "bg-teal-500/10 text-teal-300 border-teal-500/30",
-    content: "لقطات من مراحل التصميم والزراعة والتشطيب وشبكات الري أثناء التنفيذ الفعلي بلمسة م. وديع.",
-    note: "بناء الثقة عند المشاهد عن طريق إظهار الاحترافية في أدق تفاصيل الشغل.",
-    cameraAngle: "Macro Focus • حركة درون سلسة • تفاصيل الخامات والزرع",
+    content: "لقطات من مراحل التصميم والزراعة والتشطيب أثناء التنفيذ الفعلي",
+    note: "بناء الثقة عند المشاهد عن طريق إظهار الاحترافية في مراحل الشغل",
+    cameraAngle: "Macro Lens 4K • زوايا درامية تركز على دقة الحرفة والري والتشطيب",
   },
   {
     id: 3,
@@ -47,16 +46,16 @@ const PHASES = [
     color: "from-emerald-400 to-teal-500",
     border: "border-emerald-500/40",
     tagColor: "bg-emerald-500/10 text-emerald-300 border-emerald-500/30",
-    content: "اللقطات السينمائية النهائية للملعب أو الحديقة بعد التنفيذ بجودة 4K وإضاءة مسائية مذهلة.",
-    note: "تحويل المشاهد لعميل عن طريق نتيجة نهائية تبيع نفسها بنفسها دون حشو.",
-    cameraAngle: "4K Drone Orbit • Cinematic Lighting • 60 FPS Smooth Flow",
+    content: "اللقطات السينمائية النهائية للملعب أو الحديقة بعد التنفيذ بجودة 4K",
+    note: "تحويل المشاهد لعميل عن طريق نتيجة نهائية تبيع نفسها بنفسها",
+    cameraAngle: "4K Drone Cinematic Orbit • إضاءة ليلية دافئة تبرز الفخامة المطلقة",
   },
 ];
 
 export default function VideoScriptPlayer() {
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
-  const [sliderPosition, setSliderPosition] = useState(50); // For Before & After interactive slider
+  const [sliderPosition, setSliderPosition] = useState(50);
 
   const currentStageIndex =
     currentTime < 15 ? 0 : currentTime < 35 ? 1 : 2;
@@ -102,8 +101,8 @@ export default function VideoScriptPlayer() {
     return `${mins.toString().padStart(2, "0")}:${secs.toString().padStart(2, "0")}`;
   };
 
-  const whatsappUrl = `https://wa.me/201220582340?text=${encodeURIComponent(
-    "أهلاً، اطلعت على خطة الهوية بتاعة Wadi3 وجاهز نبدأ التنفيذ!"
+  const ceoWhatsappUrl = `https://wa.me/201211050297?text=${encodeURIComponent(
+    "أهلاً، اطلعت على خطة الهوية بتاعة Wadi3 وعاوز أبدأ التنفيذ مع SHIFT!"
   )}`;
 
   return (
@@ -114,14 +113,14 @@ export default function VideoScriptPlayer() {
         <div className="text-center mb-12">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-teal-500/10 border border-teal-500/30 text-teal-300 text-xs font-bold mb-3">
             <SparklesIcon className="w-3.5 h-3.5 text-teal-400" />
-            <span>توثيق التحول السينمائي لمشاريع وديع</span>
+            <span>رؤية وتجهيز فريق ميديا وكالة SHIFT</span>
           </div>
           <h3 className="text-2xl sm:text-4xl font-black text-white">
-            توثيق التحول:{" "}
+            احنا هنوثقلك التحول:{" "}
             <span className="text-gradient-teal">قبل التنفيذ وبعده</span>
           </h3>
-          <p className="text-sm sm:text-base text-slate-300 mt-2 max-w-2xl mx-auto">
-            بدل ما الفيديوهات تظلم مستوى الشغل الممتاز، هنوثق كل مشروع بمعايير إعلانية 4K تحول المتابع لعميل جاهز للتعاقد.
+          <p className="text-sm sm:text-base text-slate-300 mt-2 max-w-2xl mx-auto leading-relaxed">
+            ده السيناريو الإعلاني اللي فريق تصوير ومونتاج SHIFT هينفذه في كل مشروع جديد لـ Wadi3 Landscape عشان نخلي العميل ينبهر ويطلب التعاقد فوراً.
           </p>
         </div>
 
@@ -135,58 +134,58 @@ export default function VideoScriptPlayer() {
               <span className="w-3 h-3 rounded-full bg-amber-500/80 inline-block"></span>
               <span className="w-3 h-3 rounded-full bg-teal-500/80 inline-block"></span>
               <span className="mr-2 text-slate-400 font-mono">
-                wadi3_landscape_before_after_cinematic.mp4
+                shift_production_wadi3_cinematic_case.mp4
               </span>
             </div>
 
             <div className="flex items-center gap-3 text-slate-300">
               <span className="hidden sm:inline font-mono text-teal-300">
-                4K • 60 FPS • 16:9
+                4K • 60 FPS • 16:9 • SHIFT Production
               </span>
               <span className="px-2.5 py-0.5 rounded bg-teal-500/20 text-teal-300 text-[10px] font-bold border border-teal-500/30">
-                SHIFT PRODUCTION
+                SHIFT Production
               </span>
             </div>
           </div>
 
-          {/* Player Screen Area */}
+          {/* Screen Area */}
           <div className="p-6 sm:p-10 relative bg-gradient-to-b from-[#0c1422] via-[#09101b] to-[#070c14]">
             
             <div className="flex flex-col lg:flex-row gap-8 items-center">
               
-              {/* Left Side: Visual Interactive "Before & After" Simulator */}
+              {/* Left Side: Before & After Visual Simulator */}
               <div className="w-full lg:w-5/12">
                 <div className="relative rounded-2xl overflow-hidden border border-[#24344d] bg-[#0c1626] p-5 text-center shadow-xl">
                   
-                  {/* Interactive Before & After Visual Split Box */}
+                  {/* Visual Split Box */}
                   <div className="relative h-48 sm:h-52 w-full rounded-xl overflow-hidden select-none mb-4 border border-[#2d4261]">
                     
-                    {/* AFTER Layer (Right/Under) */}
+                    {/* AFTER Layer (SHIFT 4K Production) */}
                     <div className="absolute inset-0 bg-gradient-to-br from-[#0c2e35] via-[#1E6E78] to-[#0d1e27] flex flex-col items-center justify-center p-4 text-center">
                       <span className="text-4xl mb-2">🌴✨</span>
                       <span className="text-xs font-black px-2.5 py-1 rounded bg-teal-400 text-slate-950 shadow-md">
-                        بعد: 4K Cinematic
+                        بعد: تصوير SHIFT السينمائي 4K
                       </span>
                       <p className="text-[11px] text-teal-100 mt-2 font-medium">
-                        نجيل طبيعي مخملي • إنارة ليلية خافتة • ممرات حجرية فاخرة
+                        نجيل مخملي • إضاءة ليلية دافئة • ممرات حجرية فاخرة
                       </p>
                     </div>
 
-                    {/* BEFORE Layer (Left/Over clipped) */}
+                    {/* BEFORE Layer (Old Mobile Footage) */}
                     <div
                       className="absolute inset-y-0 left-0 bg-gradient-to-br from-[#2a261f] via-[#1d1912] to-[#12100c] flex flex-col items-center justify-center p-4 text-center border-r-2 border-amber-400 shadow-xl"
                       style={{ width: `${sliderPosition}%` }}
                     >
                       <span className="text-4xl mb-2">🚜🧱</span>
                       <span className="text-xs font-black px-2.5 py-1 rounded bg-amber-400 text-slate-950 shadow-md">
-                        قبل: تصوير قديم
+                        قبل: تصوير الموبايل القديم
                       </span>
                       <p className="text-[11px] text-amber-200 mt-2 font-medium">
-                        أرض ترابية غير ممهدة • تصوير موبايل ضعيف بدون إضاءة
+                        أرض ترابية غير واضحة • جودة تظلم مستوى شغلك
                       </p>
                     </div>
 
-                    {/* Draggable Divider Handle */}
+                    {/* Handle */}
                     <div
                       className="absolute inset-y-0 -ml-2 pointer-events-none flex items-center justify-center"
                       style={{ left: `${sliderPosition}%` }}
@@ -197,12 +196,12 @@ export default function VideoScriptPlayer() {
                     </div>
                   </div>
 
-                  {/* Interactive Slider Input */}
+                  {/* Slider Control */}
                   <div className="space-y-1">
                     <div className="flex justify-between text-[11px] text-slate-300 font-bold">
                       <span>اسحب للمقارنة الحية:</span>
                       <span className="text-teal-400">
-                        {sliderPosition > 50 ? "تركيز على النتيجة بعد" : "تركيز على الأرض قبل"}
+                        {sliderPosition > 50 ? "عرض فخامة التنفيذ النهائي" : "عرض الأرض قبل المعالجة"}
                       </span>
                     </div>
                     <input
@@ -218,7 +217,7 @@ export default function VideoScriptPlayer() {
                     />
                   </div>
 
-                  {/* Audio visualizer */}
+                  {/* Equalizer */}
                   <div className="mt-4 flex items-center justify-center gap-1.5 h-8 px-4 rounded-xl bg-black/40 border border-[#21324a]">
                     <span className={`w-1 bg-teal-400 rounded-full ${isPlaying ? "wave-bar-1" : "h-2"}`}></span>
                     <span className={`w-1 bg-cyan-300 rounded-full ${isPlaying ? "wave-bar-2" : "h-4"}`}></span>
@@ -233,7 +232,7 @@ export default function VideoScriptPlayer() {
                 </div>
               </div>
 
-              {/* Right Side: Active Phase Breakdown */}
+              {/* Right Side: Active Phase Details */}
               <div className="w-full lg:w-7/12">
                 <div className={`p-6 sm:p-7 rounded-2xl border transition-all duration-500 bg-[#0d1726] ${currentStage.border} shadow-2xl`}>
                   
@@ -253,11 +252,11 @@ export default function VideoScriptPlayer() {
                   <div className="space-y-2 pt-3 border-t border-[#1d2d44]">
                     <div className="p-3 rounded-xl bg-[#121e30] border border-[#243750] text-xs text-slate-300 flex items-center gap-2">
                       <SparklesIcon className="w-4 h-4 text-amber-400 shrink-0" />
-                      <span><strong>الهدف التسويقي:</strong> {currentStage.note}</span>
+                      <span><strong>الهدف التسويقي لـ SHIFT:</strong> {currentStage.note}</span>
                     </div>
 
                     <div className="text-[11px] text-teal-300/90 font-mono">
-                      🎬 زاوية الكاميرا: {currentStage.cameraAngle}
+                      🎬 زاوية التصوير: {currentStage.cameraAngle}
                     </div>
                   </div>
 
@@ -269,7 +268,6 @@ export default function VideoScriptPlayer() {
             {/* Timeline Controls & Scrubber */}
             <div className="mt-8 pt-6 border-t border-[#1b2a3d]">
               
-              {/* Progress Slider */}
               <div className="relative mb-4">
                 <div className="h-2 w-full bg-[#172538] rounded-full overflow-hidden">
                   <div
@@ -284,7 +282,6 @@ export default function VideoScriptPlayer() {
                 ></div>
               </div>
 
-              {/* Action Buttons */}
               <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
                 
                 <div className="flex items-center gap-3">
@@ -305,7 +302,6 @@ export default function VideoScriptPlayer() {
                   </div>
                 </div>
 
-                {/* Stage Jumps */}
                 <div className="flex flex-wrap items-center gap-2">
                   {PHASES.map((phase) => (
                     <button
@@ -322,16 +318,15 @@ export default function VideoScriptPlayer() {
                   ))}
                 </div>
 
-                {/* Direct Kickoff CTA */}
                 <a
-                  href={whatsappUrl}
+                  href={ceoWhatsappUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={() => soundFx.playChime()}
                   className="px-4 py-2 rounded-xl text-xs font-bold bg-teal-500/15 text-teal-300 border border-teal-500/30 hover:bg-teal-500/25 hover:scale-105 transition-all cursor-pointer flex items-center gap-1.5"
                 >
-                  <CheckCircle2Icon className="w-3.5 h-3.5 text-teal-400" />
-                  <span>بدء تصوير مشروعي القادم 🎬</span>
+                  <MessageCircleIcon className="w-3.5 h-3.5 text-teal-400" />
+                  <span>اعتماد بدء التصوير مع SHIFT 🎬</span>
                 </a>
 
               </div>

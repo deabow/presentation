@@ -5,7 +5,6 @@ import {
   BuildingIcon,
   UsersIcon,
   TrendingUpIcon,
-  PhoneIcon,
   MessageCircleIcon,
   VolumeIcon,
   VolumeXIcon,
@@ -16,13 +15,13 @@ import { soundFx } from "./SoundEffects";
 interface HeaderProps {
   activeTrack: "villas" | "developers" | "strategy";
   setActiveTrack: (track: "villas" | "developers" | "strategy") => void;
-  onOpenConsultation: () => void;
+  onOpenKickoff: () => void;
 }
 
 export default function Header({
   activeTrack,
   setActiveTrack,
-  onOpenConsultation,
+  onOpenKickoff,
 }: HeaderProps) {
   const [soundEnabled, setSoundEnabled] = useState(true);
 
@@ -36,41 +35,43 @@ export default function Header({
     setSoundEnabled(newState);
   };
 
-  const whatsappUrl = `https://wa.me/201220582340?text=${encodeURIComponent(
-    "أهلاً، اطلعت على خطة الهوية بتاعة Wadi3 وجاهز نبدأ التنفيذ!"
+  const ceoWhatsappUrl = `https://wa.me/201211050297?text=${encodeURIComponent(
+    "أهلاً، اطلعت على خطة الهوية بتاعة Wadi3 وعاوز أبدأ التنفيذ مع SHIFT!"
   )}`;
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-[#24344d]/70 bg-[#090e17]/90 backdrop-blur-xl transition-all duration-300">
-      {/* Top Announcement Bar */}
-      <div className="hidden md:flex items-center justify-between px-6 py-2 text-xs border-b border-[#1b263b] bg-[#0d1522]/70 text-slate-400">
+      {/* Top Context Announcement Bar */}
+      <div className="hidden md:flex items-center justify-between px-6 py-2 text-xs border-b border-[#1b263b] bg-[#0d1522]/80 text-slate-400">
         <div className="flex items-center gap-2">
-          <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-teal-500/10 text-teal-300 border border-teal-500/30">
+          <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-teal-500/15 text-teal-300 border border-teal-500/30">
             <span className="w-2 h-2 rounded-full bg-teal-400 animate-ping"></span>
-            انطلاق الهوية الرقمية 2026
+            CONFIDENTIAL CLIENT PITCH
           </span>
-          <span className="font-semibold text-slate-300">Wadi3 Landscape • اللاندسكيب الفاخر والتوثيق السينمائي</span>
+          <span className="font-semibold text-slate-300">
+            ملف استراتيجي خاص وموجّه من <strong className="text-white">SHIFT Agency</strong> إلى <strong className="text-teal-300">Wadi3 Landscape</strong>
+          </span>
         </div>
 
         <div className="flex items-center gap-4 text-xs">
           <span className="flex items-center gap-1.5 text-teal-300 font-semibold">
             <SparklesIcon className="w-3.5 h-3.5 text-teal-400" />
-            إصدار خاص: <strong>SHIFT GROWTH EDITION</strong>
+            <span>إصدار النمو: <strong>SHIFT GROWTH EDITION</strong></span>
           </span>
           <span className="text-slate-600">|</span>
           <span className="text-slate-400">
-            العميل: <strong className="text-white font-bold">م. وديع</strong>
+            العميل المستهدف: <strong className="text-white font-bold">م. وديع</strong>
           </span>
         </div>
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
-        {/* Brand identity */}
+        {/* Brand identity: SHIFT Agency presenting to Wadi3 */}
         <div className="flex items-center gap-3 cursor-pointer" onClick={() => handleTrackChange("villas")}>
           <div className="relative group">
             <div className="w-12 h-12 rounded-xl bg-gradient-to-tr from-[#1E6E78] via-teal-500 to-cyan-400 p-0.5 shadow-lg shadow-teal-500/20 group-hover:shadow-teal-500/40 transition-all duration-300">
-              <div className="w-full h-full bg-[#0c131f] rounded-[10px] flex items-center justify-center">
-                <span className="text-2xl select-none">🌿</span>
+              <div className="w-full h-full bg-[#0c131f] rounded-[10px] flex items-center justify-center font-black text-white text-lg tracking-wider">
+                S
               </div>
             </div>
             <span className="absolute -bottom-1 -right-1 flex h-3 w-3">
@@ -82,19 +83,19 @@ export default function Header({
           <div>
             <div className="flex items-center gap-2">
               <h1 className="text-lg sm:text-xl font-black text-white tracking-tight">
-                Wadi3 Landscape
+                SHIFT <span className="text-teal-400 text-sm font-semibold">AGENCY</span>
               </h1>
               <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-teal-500/15 text-teal-300 border border-teal-500/30">
-                GROWTH EDITION
+                PITCH DECK
               </span>
             </div>
             <p className="text-xs text-slate-400 font-medium">
-              بواسطة: <span className="text-teal-300 font-semibold">SHIFT AGENCY</span>
+              عرض استراتيجي مقدّم إلى: <span className="text-teal-300 font-semibold">Wadi3 Landscape</span>
             </p>
           </div>
         </div>
 
-        {/* Dynamic Track Switcher Tabs (Micro-interaction Centerpiece) */}
+        {/* Dynamic Track Switcher Tabs */}
         <nav className="hidden lg:flex items-center p-1.5 rounded-2xl bg-[#0e1624] border border-[#24344d]">
           <button
             onClick={() => handleTrackChange("villas")}
@@ -105,7 +106,7 @@ export default function Header({
             }`}
           >
             <UsersIcon className="w-4 h-4" />
-            <span>مسار الفلل والأفراد (Fast Conversion)</span>
+            <span>مسار الفلل (Fast Conversion)</span>
           </button>
 
           <button
@@ -117,7 +118,7 @@ export default function Header({
             }`}
           >
             <BuildingIcon className="w-4 h-4" />
-            <span>مسار الشركات والمطورين (High LTV)</span>
+            <span>مسار المطورين (High LTV)</span>
           </button>
 
           <button
@@ -129,7 +130,7 @@ export default function Header({
             }`}
           >
             <TrendingUpIcon className="w-4 h-4" />
-            <span>ركائز الاستراتيجية 🚀</span>
+            <span>ركائز خطة SHIFT 🚀</span>
           </button>
         </nav>
 
@@ -148,29 +149,17 @@ export default function Header({
             )}
           </button>
 
-          {/* Quick WhatsApp with Client Number 201220582340 */}
+          {/* Quick WhatsApp to SHIFT's CEO */}
           <a
-            href={whatsappUrl}
+            href={ceoWhatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
-            onClick={() => soundFx.playClick(750)}
-            className="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold border border-emerald-500/30 bg-emerald-500/10 text-emerald-400 hover:bg-emerald-500/20 hover:scale-105 transition-all duration-200"
+            onClick={() => soundFx.playChime()}
+            className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-gradient-to-r from-teal-500 via-[#1E6E78] to-cyan-500 text-white shadow-lg shadow-teal-700/30 hover:scale-105 active:scale-95 transition-all duration-200 cursor-pointer"
           >
             <MessageCircleIcon className="w-4 h-4" />
-            <span>واتساب مباشر</span>
+            <span>تواصل مع CEO وكالة SHIFT</span>
           </a>
-
-          {/* Primary CTA Button */}
-          <button
-            onClick={() => {
-              soundFx.playChime();
-              onOpenConsultation();
-            }}
-            className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-gradient-to-r from-[#1E6E78] via-teal-600 to-cyan-600 text-white shadow-lg shadow-teal-700/30 hover:shadow-teal-700/50 hover:scale-105 active:scale-95 transition-all duration-200 cursor-pointer"
-          >
-            <PhoneIcon className="w-4 h-4 animate-bounce" />
-            <span>احجز معاينة ميدانية</span>
-          </button>
         </div>
       </div>
 
