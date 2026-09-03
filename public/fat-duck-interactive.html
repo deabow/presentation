@@ -1,0 +1,923 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>مشروع البطة السمينة | مؤسسة كمال أبو علي x SHIFT Agency</title>
+  
+  <!-- Tailwind CSS CDN for instant standalone browser execution -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            obsidian: '#06060c',
+            surface: '#0c0a1a',
+            surfaceCard: '#120f26',
+            electricPurple: '#a855f7',
+            neonCyan: '#38bdf8',
+            amberGold: '#f59e0b',
+          },
+          fontFamily: {
+            cairo: ['Cairo', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  
+  <!-- Google Fonts: Cairo -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <style>
+    * {
+      font-family: 'Cairo', sans-serif;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: #06060c;
+      color: #f8fafc;
+      background-image: 
+        radial-gradient(circle at 15% 15%, rgba(168, 85, 247, 0.12) 0%, transparent 40%),
+        radial-gradient(circle at 85% 25%, rgba(56, 189, 248, 0.08) 0%, transparent 35%),
+        radial-gradient(circle at 50% 85%, rgba(124, 58, 237, 0.1) 0%, transparent 50%);
+      background-attachment: fixed;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    .glass-panel {
+      background: rgba(12, 10, 26, 0.8);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(168, 85, 247, 0.2);
+      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
+    }
+
+    .glass-panel-cyan {
+      background: rgba(8, 14, 28, 0.8);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(56, 189, 248, 0.25);
+      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
+    }
+
+    .glass-panel-gold {
+      background: rgba(24, 16, 8, 0.8);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(245, 158, 11, 0.25);
+      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
+    }
+
+    .text-gradient-purple {
+      background: linear-gradient(135deg, #ffffff 0%, #d8b4fe 60%, #c084fc 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .text-gradient-cyan {
+      background: linear-gradient(135deg, #ffffff 0%, #7dd3fc 60%, #38bdf8 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .text-gradient-gold {
+      background: linear-gradient(135deg, #ffffff 0%, #fde68a 60%, #fbbf24 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    @keyframes wave-bar {
+      0%, 100% { height: 10px; }
+      50% { height: 28px; }
+    }
+    .wave-anim-1 { animation: wave-bar 1.2s ease-in-out infinite 0.1s; }
+    .wave-anim-2 { animation: wave-bar 0.9s ease-in-out infinite 0.3s; }
+    .wave-anim-3 { animation: wave-bar 1.4s ease-in-out infinite 0.2s; }
+    .wave-anim-4 { animation: wave-bar 1.1s ease-in-out infinite 0.4s; }
+    .wave-anim-5 { animation: wave-bar 0.8s ease-in-out infinite 0.15s; }
+  </style>
+</head>
+<body class="selection:bg-purple-600 selection:text-white">
+
+  <!-- TOP BAR -->
+  <div class="hidden md:flex items-center justify-between px-6 py-2 text-xs border-b border-[#1c1639] bg-[#0c0a1a]/80 text-slate-400">
+    <div class="flex items-center gap-2">
+      <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+        متاحون للاستشارات الفورية 24/7
+      </span>
+      <span>مؤسسة المستشار كمال أبو علي للمحاماة والاستشارات القانونية</span>
+    </div>
+
+    <div class="flex items-center gap-4 text-xs">
+      <span class="text-purple-300 font-semibold">
+        ⚖️ معتمدة لدى نقابة المحامين ومحاكم الاستئناف
+      </span>
+      <span class="text-slate-600">|</span>
+      <span>
+        تنفيذ استراتيجية: <strong class="text-purple-400 font-bold">SHIFT AGENCY</strong>
+      </span>
+    </div>
+  </div>
+
+  <!-- HEADER NAVIGATION -->
+  <header class="sticky top-0 z-50 w-full border-b border-[#231b46]/80 bg-[#06060c]/90 backdrop-blur-xl">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
+      
+      <!-- Brand -->
+      <div class="flex items-center gap-3 cursor-pointer" onclick="switchTrack('b2b')">
+        <div class="relative group">
+          <div class="w-12 h-12 rounded-xl bg-gradient-to-tr from-purple-600 via-indigo-600 to-cyan-500 p-0.5 shadow-lg shadow-purple-600/30">
+            <div class="w-full h-full bg-[#0c0a1a] rounded-[10px] flex items-center justify-center">
+              <span class="text-2xl select-none">🦆</span>
+            </div>
+          </div>
+          <span class="absolute -bottom-1 -right-1 flex h-3 w-3">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-purple-400 opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-3 w-3 bg-purple-500"></span>
+          </span>
+        </div>
+
+        <div>
+          <div class="flex items-center gap-2">
+            <h1 class="text-lg sm:text-xl font-black text-white">مشروع البطة السمينة</h1>
+            <span class="text-[10px] font-bold px-1.5 py-0.5 rounded bg-purple-500/20 text-purple-300 border border-purple-500/30">
+              PRO MAX
+            </span>
+          </div>
+          <p class="text-xs text-slate-400">
+            العميل: <span class="text-purple-300 font-semibold">البوب كمال أبو علي</span>
+          </p>
+        </div>
+      </div>
+
+      <!-- Center Track Switcher (Desktop) -->
+      <nav class="hidden lg:flex items-center p-1.5 rounded-2xl bg-[#0e0c1f] border border-[#261f4d]">
+        <button id="nav-btn-b2b" onclick="switchTrack('b2b')" class="flex items-center gap-2 px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all bg-sky-500 text-slate-950 shadow-md shadow-sky-500/30">
+          <span>🏢</span>
+          <span>سكة الشركات والمصانع (B2B)</span>
+        </button>
+        <button id="nav-btn-b2c" onclick="switchTrack('b2c')" class="flex items-center gap-2 px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all text-slate-400 hover:text-white">
+          <span>⚖️</span>
+          <span>سكة قضايا الأسرة (B2C)</span>
+        </button>
+        <button id="nav-btn-strategy" onclick="switchTrack('strategy')" class="flex items-center gap-2 px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all text-slate-400 hover:text-white">
+          <span>📊</span>
+          <span>الخطة والاستراتيجية</span>
+        </button>
+      </nav>
+
+      <!-- Action Buttons -->
+      <div class="flex items-center gap-2.5">
+        <button id="sfx-toggle-btn" onclick="toggleAudioFx()" title="تشغيل/كتم المؤثرات الصوتية" class="p-2.5 rounded-xl border border-[#261f4d] bg-[#0c0a1a] text-purple-400 hover:border-purple-500/40 transition-all">
+          🔊
+        </button>
+
+        <a href="https://wa.me/201000000000?text=أهلاً%20مؤسسة%20كمال%20أبو%20علي،%20أريد%20استشارة%20قانونية%20عاجلة" target="_blank" rel="noopener noreferrer" onclick="playBeep(750)" class="hidden sm:inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-bold border border-emerald-500/30 bg-emerald-500/10 text-emerald-400 hover:bg-emerald-500/20 transition-all">
+          <span>💬</span>
+          <span>واتساب فوري</span>
+        </a>
+
+        <button onclick="openModal()" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-gradient-to-r from-purple-600 via-indigo-600 to-purple-500 text-white shadow-lg shadow-purple-600/30 hover:scale-105 active:scale-95 transition-all cursor-pointer">
+          <span>📞</span>
+          <span>احجز استشارة فورية</span>
+        </button>
+      </div>
+
+    </div>
+
+    <!-- Mobile Nav -->
+    <div class="lg:hidden flex items-center justify-around px-3 py-2 border-t border-[#1c1639] bg-[#080712]">
+      <button id="mob-btn-b2b" onclick="switchTrack('b2b')" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-sky-500 text-slate-950">سكة الشركات</button>
+      <button id="mob-btn-b2c" onclick="switchTrack('b2c')" class="px-3 py-1.5 rounded-lg text-xs font-bold text-slate-400">سكة الأسرة</button>
+      <button id="mob-btn-strategy" onclick="switchTrack('strategy')" class="px-3 py-1.5 rounded-lg text-xs font-bold text-slate-400">الخطة والحاسبة</button>
+    </div>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section class="relative pt-10 pb-16 lg:py-20 overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+      
+      <!-- Dynamic Track Pill -->
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-purple-500/30 bg-purple-500/10 text-purple-300 text-xs sm:text-sm font-bold mb-6">
+        <span>✨</span>
+        <span id="hero-badge-text">الحملة الأولى: سكة المصانع والشركات الكبرى (B2B)</span>
+      </div>
+
+      <!-- Dynamic Headline -->
+      <h2 id="hero-title" class="text-3xl sm:text-5xl lg:text-6xl font-black text-white leading-tight mb-6 max-w-4xl mx-auto">
+        حماية قانونية متكاملة لبيزنسك <span class="text-gradient-cyan block mt-2">وتحصين عقودك واستثماراتك</span>
+      </h2>
+
+      <!-- Dynamic Subtitle -->
+      <p id="hero-subtitle" class="text-base sm:text-lg lg:text-xl text-slate-300 mb-10 leading-relaxed max-w-3xl mx-auto font-medium">
+        أكثر من <strong class="text-sky-400">70% من خسائر وخناقات الشركات</strong> كان يمكن تفاديها بسطر واحد مكتوب صح في العقد من الأول. مؤسسة <span class="text-white font-bold">كمال أبو علي</span> تحمي الكيان وتغلق الثغرات قبل وقوع المشكلة.
+      </p>
+
+      <!-- CTA Buttons -->
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
+        <button id="hero-cta-btn" onclick="openModal()" class="w-full sm:w-auto px-8 py-4 rounded-2xl font-black text-sm sm:text-base bg-gradient-to-r from-sky-400 via-cyan-500 to-blue-600 text-slate-950 shadow-xl shadow-cyan-500/30 hover:scale-105 active:scale-95 transition-all cursor-pointer">
+          طلب فحص عقود شركتك مجاناً
+        </button>
+
+        <a href="#video-script-section" onclick="playBeep(600)" class="w-full sm:w-auto px-7 py-4 rounded-2xl font-bold text-sm sm:text-base text-slate-200 border border-[#2b2255] bg-[#0c0a1a]/80 hover:bg-[#161233] transition-all flex items-center justify-center gap-2.5">
+          <span>▶️</span>
+          <span>شاهد سكريبت فيديو البوب (60 ثانية)</span>
+        </a>
+      </div>
+
+      <!-- Metrics Row -->
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 max-w-5xl mx-auto mt-12 text-right">
+        <div class="glass-panel p-5 rounded-2xl border border-purple-500/20">
+          <div class="text-xs font-bold text-purple-300 mb-1">وقاية تعاقدية</div>
+          <div class="text-3xl sm:text-4xl font-black text-white">+70%</div>
+          <p class="text-xs text-slate-400 mt-1">من النزاعات تُغلق مسبقاً قبل وصولها للمحكمة</p>
+        </div>
+
+        <div class="glass-panel p-5 rounded-2xl border border-sky-500/20">
+          <div class="text-xs font-bold text-sky-300 mb-1">سجل الخبرة</div>
+          <div class="text-3xl sm:text-4xl font-black text-white">+15 سنة</div>
+          <p class="text-xs text-slate-400 mt-1">ترافع في المحاكم الاقتصادية والمدنية والأسرة</p>
+        </div>
+
+        <div class="glass-panel p-5 rounded-2xl border border-emerald-500/20">
+          <div class="text-xs font-bold text-emerald-300 mb-1">نسبة النجاح</div>
+          <div class="text-3xl sm:text-4xl font-black text-white">98.4%</div>
+          <p class="text-xs text-slate-400 mt-1">أحكام إيجابية وتسويات ودية للموكلين</p>
+        </div>
+
+        <div class="glass-panel p-5 rounded-2xl border border-amber-500/20">
+          <div class="text-xs font-bold text-amber-300 mb-1">سرعة الاستجابة</div>
+          <div class="text-3xl sm:text-4xl font-black text-white">&lt; 5 د</div>
+          <p class="text-xs text-slate-400 mt-1">متوسط سرعة الرد على الواتساب العاجل</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- INTERACTIVE VIDEO SCRIPT SECTION -->
+  <section id="video-script-section" class="py-16 relative">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center mb-10">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-500/10 border border-purple-500/20 text-purple-300 text-xs font-bold mb-2">
+          <span>🎬</span>
+          <span>فيديو الشركات للبوب كمال (60 ثانية تبيع ع طول)</span>
+        </div>
+        <h3 class="text-2xl sm:text-4xl font-black text-white">
+          مشغل السكريبت التفاعلي <span class="text-gradient-purple">(The 60s Pitch)</span>
+        </h3>
+        <p class="text-xs sm:text-sm text-slate-400 mt-2 max-w-xl mx-auto">
+          اضغط تشغيل أو تنقل بين مراحل الفيديو الثلاث لاختبار الإلقاء وسيكولوجية الإقناع.
+        </p>
+      </div>
+
+      <!-- Player Frame -->
+      <div class="glass-panel rounded-3xl border border-purple-500/30 overflow-hidden shadow-2xl">
+        
+        <!-- Player Header -->
+        <div class="flex items-center justify-between px-6 py-3 border-b border-[#231b46] bg-[#090714] text-xs">
+          <div class="flex items-center gap-2">
+            <span class="w-3 h-3 rounded-full bg-rose-500"></span>
+            <span class="w-3 h-3 rounded-full bg-amber-500"></span>
+            <span class="w-3 h-3 rounded-full bg-emerald-500"></span>
+            <span class="mr-2 text-slate-400 font-mono">kamal_abo_ali_corporate_60s.mp4</span>
+          </div>
+          <span class="px-2 py-0.5 rounded bg-purple-500/20 text-purple-300 font-bold text-[10px]">
+            SHIFT PRODUCTION
+          </span>
+        </div>
+
+        <!-- Video Stage Area -->
+        <div class="p-6 sm:p-10 bg-gradient-to-b from-[#0e0c1f] via-[#090815] to-[#06060c]">
+          <div class="flex flex-col lg:flex-row gap-8 items-center">
+            
+            <!-- Left Presenter Card -->
+            <div class="w-full lg:w-5/12 text-center p-6 rounded-2xl border border-[#2b2255] bg-[#0d0a1c]">
+              <div class="w-20 h-20 rounded-full mx-auto mb-3 bg-gradient-to-tr from-purple-600 via-indigo-600 to-sky-500 p-1 flex items-center justify-center shadow-lg">
+                <div class="w-full h-full bg-[#0d0a1c] rounded-full flex items-center justify-center text-3xl">
+                  ⚖️
+                </div>
+              </div>
+              <h4 class="text-lg font-black text-white">المستشار كمال أبو علي</h4>
+              <p class="text-xs text-purple-300 mb-4">المحامي بالنقض ومستشار الشركات</p>
+
+              <!-- Animated Equalizer Bars -->
+              <div class="flex items-center justify-center gap-1.5 h-8 px-4 rounded-xl bg-black/50 border border-[#261f4d]">
+                <span id="bar-1" class="w-1 bg-purple-500 rounded-full h-3"></span>
+                <span id="bar-2" class="w-1 bg-sky-400 rounded-full h-5"></span>
+                <span id="bar-3" class="w-1 bg-indigo-500 rounded-full h-2"></span>
+                <span id="bar-4" class="w-1 bg-purple-400 rounded-full h-4"></span>
+                <span id="bar-5" class="w-1 bg-cyan-400 rounded-full h-3"></span>
+                <span id="player-state-text" class="text-[10px] font-mono text-slate-400 mr-2">جاهز للتشغيل</span>
+              </div>
+            </div>
+
+            <!-- Right Active Speech Box -->
+            <div class="w-full lg:w-7/12">
+              <div class="p-6 rounded-2xl border border-rose-500/40 bg-[#0d0b1d]" id="stage-card">
+                <div class="flex items-center justify-between mb-4">
+                  <span id="stage-badge" class="text-xs font-black px-3 py-1 rounded-full bg-rose-500/10 text-rose-300 border border-rose-500/20">
+                    [00:00 - 00:20] البداية واللسعة (The Hook)
+                  </span>
+                  <span class="text-xs font-mono text-slate-400" id="stage-num">مرحلة 1 من 3</span>
+                </div>
+
+                <blockquote id="stage-quote" class="text-base sm:text-lg text-white font-bold leading-relaxed mb-4 min-h-[90px] flex items-center">
+                  «أكبر غلطة بيقع فيها صاحب البيزنس إنه بيفتكر المحامي دوره يجي بعد ما الفاس تقع في الراس.. في حين إن أكتر من 70% من خناقات الشركات وخسائر الفلوس كان ممكن تتقفل بسطر واحد مكتوب صح في العقد من الأول!»
+                </blockquote>
+
+                <div class="p-3 rounded-xl bg-[#14112b] border border-[#231b46] text-xs text-slate-300" id="stage-desc">
+                  💡 صدمة المستمع بالحقيقة وتنبيهه إلى نزيف الأموال الخفي في الثغرات التعاقدية.
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Controls & Scrubber -->
+          <div class="mt-8 pt-6 border-t border-[#1c1639]">
+            
+            <div class="relative mb-4">
+              <div class="h-2.5 w-full bg-[#1b1738] rounded-full overflow-hidden">
+                <div id="progress-bar" class="h-full bg-gradient-to-r from-purple-600 via-sky-400 to-emerald-400 transition-all duration-300" style="width: 0%;"></div>
+              </div>
+            </div>
+
+            <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+              <div class="flex items-center gap-3">
+                <button id="play-btn" onclick="togglePlay()" class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-purple-600 to-indigo-600 text-white flex items-center justify-center text-xl shadow-lg hover:scale-105 transition-all">
+                  ▶
+                </button>
+                <div class="font-mono text-sm">
+                  <span id="time-display" class="text-white font-bold">00:00</span>
+                  <span class="text-slate-500"> / 01:00</span>
+                </div>
+              </div>
+
+              <!-- Jumps -->
+              <div class="flex flex-wrap items-center gap-2">
+                <button onclick="jumpTo(0)" class="px-3 py-1.5 rounded-xl text-xs font-bold bg-[#110e26] text-slate-300 border border-[#231b46] hover:text-white">
+                  اللسعة (0s)
+                </button>
+                <button onclick="jumpTo(20)" class="px-3 py-1.5 rounded-xl text-xs font-bold bg-[#110e26] text-slate-300 border border-[#231b46] hover:text-white">
+                  القيمة والتقل (20s)
+                </button>
+                <button onclick="jumpTo(40)" class="px-3 py-1.5 rounded-xl text-xs font-bold bg-[#110e26] text-slate-300 border border-[#231b46] hover:text-white">
+                  القفلة والطلب (40s)
+                </button>
+              </div>
+
+              <button onclick="openModal()" class="px-4 py-2 rounded-xl text-xs font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 hover:bg-emerald-500/20 transition-all">
+                تطبيق العرض في مكتبك 📄
+              </button>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- DYNAMIC TRACK CONTAINER -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    
+    <!-- SECTION TITLE BAR -->
+    <div class="py-6 border-b border-[#231b46] flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      <div class="flex items-center gap-3">
+        <div id="section-icon-badge" class="w-10 h-10 rounded-xl bg-sky-400 text-slate-950 flex items-center justify-center font-bold text-xl">
+          🏢
+        </div>
+        <div>
+          <h3 id="section-main-title" class="text-xl sm:text-2xl font-black text-white">
+            تفاصيل مسار الشركات والمصانع (Corporate)
+          </h3>
+          <p id="section-main-desc" class="text-xs text-slate-400">
+            نظام الحماية الوقائية للبيزنس وصياغة العقود والاستشارات السنوية (البطة السمينة)
+          </p>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-2">
+        <button onclick="switchTrack('b2b')" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-sky-500/20 text-sky-300 border border-sky-500/40">سكة الشركات</button>
+        <button onclick="switchTrack('b2c')" class="px-3 py-1.5 rounded-lg text-xs font-bold text-slate-400 hover:text-white">سكة الأسرة</button>
+        <button onclick="switchTrack('strategy')" class="px-3 py-1.5 rounded-lg text-xs font-bold text-slate-400 hover:text-white">الخطة والحاسبة</button>
+      </div>
+    </div>
+
+    <!-- TRACK 1: B2B CORPORATE -->
+    <div id="content-b2b" class="py-12 space-y-12">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="glass-panel p-6 rounded-2xl border border-sky-500/20">
+          <div class="text-2xl mb-3">📄</div>
+          <h4 class="text-base font-bold text-white mb-2">صياغة وتدقيق العقود</h4>
+          <p class="text-xs text-slate-400 leading-relaxed">تحصين عقود التوريد والتوزيع والشركاء ببند تحكيم وشروط جزائية ملزمة تقفل أي ثغرة مسبقاً.</p>
+        </div>
+
+        <div class="glass-panel p-6 rounded-2xl border border-sky-500/20">
+          <div class="text-2xl mb-3">🏭</div>
+          <h4 class="text-base font-bold text-white mb-2">تأسيس المصانع والشركات</h4>
+          <p class="text-xs text-slate-400 leading-relaxed">استخراج السجل التجاري، البطاقة الضريبية، تراخيص التنمية الصناعية وتأسيس الكيانات القانونية.</p>
+        </div>
+
+        <div class="glass-panel p-6 rounded-2xl border border-sky-500/20">
+          <div class="text-2xl mb-3">🛡️</div>
+          <h4 class="text-base font-bold text-white mb-2">القضايا والنزاعات العمالية</h4>
+          <p class="text-xs text-slate-400 leading-relaxed">لوائح عمل معتمدة من مكتب العمل وعقود موظفين مؤمنة تمنع القضايا الكيدية والابتزاز العمالي.</p>
+        </div>
+
+        <div class="glass-panel p-6 rounded-2xl border border-sky-500/20">
+          <div class="text-2xl mb-3">⭐</div>
+          <h4 class="text-base font-bold text-white mb-2">الاستشارات السنوية (Retainer)</h4>
+          <p class="text-xs text-slate-400 leading-relaxed">المستشار كمال أبو علي معك في كل تفاوض واجتماع مجلس إدارة وترافع أمام المحاكم الاقتصادية.</p>
+        </div>
+      </div>
+
+      <!-- Corporate Lead Form -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        <div class="lg:col-span-5 glass-panel p-8 rounded-3xl border border-[#2e235a]">
+          <span class="text-xs font-bold text-sky-400 block mb-2">⚡ عرض حصري</span>
+          <h4 class="text-2xl font-black text-white mb-3">جلسة تدقيق قانوني مجانية لأول 3 عقود في شركتك</h4>
+          <p class="text-sm text-slate-300 leading-relaxed mb-6">سجل بيانات مؤسستك وسيقوم المستشار كمال أبو علي أو كبير مستشاري قطاع الشركات بالاتصال بك لترتيب جلسة فحص داخل مقرنا أو عبر الفيديو.</p>
+          <div class="p-4 rounded-xl bg-[#090714] border border-[#211a43] text-xs text-slate-400">
+            🔒 نوقع اتفاقية عدم إفصاح رسمية (NDA) قبل تسليم أي مستندات لحماية أسرار عملك.
+          </div>
+        </div>
+
+        <div class="lg:col-span-7 glass-panel p-8 rounded-3xl border border-sky-500/30">
+          <h4 class="text-xl font-black text-white mb-2">طلب جلسة فحص عقود المؤسسة</h4>
+          <p class="text-xs text-slate-400 mb-6">يرجى ملء بيانات شركتك وسنتواصل معك خلال ساعتين عمل.</p>
+
+          <form onsubmit="handleFormSubmit(event)" class="space-y-4">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-xs font-semibold text-slate-300 mb-1">اسم الشركة / المصنع *</label>
+                <input type="text" required placeholder="مثال: شركة الأمل للاستثمار" class="w-full px-4 py-2.5 rounded-xl bg-[#090714] border border-[#261f4d] text-sm text-white placeholder-slate-500 focus:outline-none focus:border-sky-500">
+              </div>
+              <div>
+                <label class="block text-xs font-semibold text-slate-300 mb-1">اسم المفوض *</label>
+                <input type="text" required placeholder="مثال: أ. محمود عبد الله" class="w-full px-4 py-2.5 rounded-xl bg-[#090714] border border-[#261f4d] text-sm text-white placeholder-slate-500 focus:outline-none focus:border-sky-500">
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-xs font-semibold text-slate-300 mb-1">المنصب</label>
+                <select class="w-full px-4 py-2.5 rounded-xl bg-[#090714] border border-[#261f4d] text-sm text-white focus:outline-none focus:border-sky-500">
+                  <option>رئيس مجلس الإدارة / Partner</option>
+                  <option>مدير تنفيذي / CEO</option>
+                  <option>مدير الشؤون القانونية</option>
+                </select>
+              </div>
+              <div>
+                <label class="block text-xs font-semibold text-slate-300 mb-1">رقم الهاتف (واتساب) *</label>
+                <input type="tel" required placeholder="010XXXXXXXX" class="w-full px-4 py-2.5 rounded-xl bg-[#090714] border border-[#261f4d] text-sm text-white placeholder-slate-500 focus:outline-none focus:border-sky-500">
+              </div>
+            </div>
+
+            <button type="submit" class="w-full py-3.5 rounded-xl font-black text-sm bg-gradient-to-r from-sky-400 to-blue-600 text-slate-950 hover:scale-[1.01] transition-all cursor-pointer">
+              تأكيد طلب جلسة فحص العقود في المكتب ←
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- TRACK 2: B2C FAMILY LAW (Hidden by default) -->
+    <div id="content-b2c" class="py-12 space-y-12 hidden">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="glass-panel p-6 rounded-2xl border border-amber-500/20">
+          <div class="text-2xl mb-3">⚖️</div>
+          <h4 class="text-base font-bold text-white mb-2">دعاوى الخلع والطلاق</h4>
+          <p class="text-xs text-slate-400 leading-relaxed">إنهاء إجراءات الخلع أو الطلاق للضرر والشقاق بأقصر مدة قضائية ممكنة وسرية تامة.</p>
+        </div>
+
+        <div class="glass-panel p-6 rounded-2xl border border-amber-500/20">
+          <div class="text-2xl mb-3">💰</div>
+          <h4 class="text-base font-bold text-white mb-2">قضايا النفقات والأجور</h4>
+          <p class="text-xs text-slate-400 leading-relaxed">تحصيل نفقات الصغار، الزوجية، العدة والمتعة، ومصاريف العلاج والمدارس بتحريات دقيقة.</p>
+        </div>
+
+        <div class="glass-panel p-6 rounded-2xl border border-amber-500/20">
+          <div class="text-2xl mb-3">👶</div>
+          <h4 class="text-base font-bold text-white mb-2">الحضانة والرؤية</h4>
+          <p class="text-xs text-slate-400 leading-relaxed">حماية حق الحضانة، استصدار الولاية التعليمية وأوامر المنع من السفر لحماية الصغار.</p>
+        </div>
+
+        <div class="glass-panel p-6 rounded-2xl border border-amber-500/20">
+          <div class="text-2xl mb-3">📦</div>
+          <h4 class="text-base font-bold text-white mb-2">قائمة المنقولات والمؤخر</h4>
+          <p class="text-xs text-slate-400 leading-relaxed">دعاوى تبديد المنقولات الجنائية والمدنية واسترداد كامل الحقوق دون مماطلة.</p>
+        </div>
+      </div>
+
+      <!-- Fast Action Box -->
+      <div class="max-w-2xl mx-auto glass-panel-gold p-8 rounded-3xl border border-amber-500/30 text-center">
+        <div class="text-3xl mb-2">🔒</div>
+        <h4 class="text-2xl font-black text-white mb-2">استشارة أسرية فورية في سرية تامة</h4>
+        <p class="text-xs sm:text-sm text-slate-300 mb-6">فريق قانوني متخصص يقف بجانبك لحماية أطفالك واسترداد حقوقك دون تعقيد أو إطالة.</p>
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-3">
+          <a href="https://wa.me/201000000000?text=أريد%20استشارة%20قانونية%20عاجلة%20بخصوص%20قضية%20أسرة" target="_blank" class="w-full sm:w-auto px-6 py-3 rounded-xl font-bold text-xs bg-emerald-500 text-slate-950 hover:bg-emerald-400 transition-all">
+            💬 تحدث مباشرة عبر الواتساب
+          </a>
+          <a href="tel:+201000000000" class="w-full sm:w-auto px-6 py-3 rounded-xl font-bold text-xs bg-amber-500 text-slate-950 hover:bg-amber-400 transition-all">
+            📞 اتصال فوري بمستشار الأسرة
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- TRACK 3: STRATEGY & ROI CALCULATOR (Hidden by default) -->
+    <div id="content-strategy" class="py-12 space-y-12 hidden">
+      
+      <!-- Comparison Matrix -->
+      <div class="glass-panel rounded-3xl border border-[#271f4e] overflow-hidden">
+        <div class="p-6 border-b border-[#231b46] bg-[#0c091d]">
+          <h4 class="text-lg font-black text-white">مقارنة الحملتين (سكة الشركات B2B vs سكة الأسرة B2C)</h4>
+          <p class="text-xs text-slate-400 mt-1">كما وردت في خطة مشروع البطة السمينة لوقف حرق الفلوس</p>
+        </div>
+
+        <div class="overflow-x-auto">
+          <table class="w-full text-right text-xs sm:text-sm border-collapse">
+            <thead>
+              <tr class="bg-[#120e29] border-b border-[#231b46] text-slate-300 font-bold">
+                <th class="p-4">وجه المقارنة</th>
+                <th class="p-4 text-sky-400">سكة الشركات (B2B)</th>
+                <th class="p-4 text-amber-400">سكة الأسرة (B2C)</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-[#1e173e] text-slate-300">
+              <tr>
+                <td class="p-4 font-bold text-white">دماغ الزبون</td>
+                <td class="p-4">صاحب بيزنس عقلاني يحمي أرباحه ويثبت عقوده.</td>
+                <td class="p-4">زبون مزنوق في مشكلة عائلية مستعجلة يريد حل فوري.</td>
+              </tr>
+              <tr>
+                <td class="p-4 font-bold text-white">صفحة الهبوط</td>
+                <td class="p-4">شياكة وتقيلة + فيديو البوب كمال + فورم بيانات.</td>
+                <td class="p-4">صفحة خفيفة وسريعة فيها زرار واتصال مباشر.</td>
+              </tr>
+              <tr>
+                <td class="p-4 font-bold text-white">المزايدة في جوجل</td>
+                <td class="p-4">كلمات دهب: (محامي شركات، تأسيس مصانع، عقود).</td>
+                <td class="p-4">كلمات سريعة: (محامي طلاق، محامي خلع، نفقة).</td>
+              </tr>
+              <tr>
+                <td class="p-4 font-bold text-white">المصلحة والفلوس</td>
+                <td class="p-4 font-bold text-sky-300">عقود واستشارات سنوية وقضايا تقيلة (شغل البطة السمينة).</td>
+                <td class="p-4 font-bold text-amber-300">كاش سريع وأتعاب تدور عجلة المكتب علطول.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Calculator -->
+      <div class="glass-panel p-8 rounded-3xl border border-purple-500/30">
+        <h4 class="text-xl font-black text-white mb-2">احسب الوفر المالي لشركتك من الحماية السنوية</h4>
+        <p class="text-xs text-slate-400 mb-6">حرّك المؤشرات لحساب الخسارة المحتملة من ثغرة تعاقدية واحدة مقارنة باشتراك الاستشارات السنوي.</p>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          <div class="lg:col-span-6 space-y-6">
+            <div class="p-4 rounded-xl bg-[#090714] border border-[#231b46]">
+              <div class="flex justify-between text-xs font-bold text-slate-200 mb-2">
+                <span>عدد العقود السنوية:</span>
+                <span id="calc-contracts-val" class="text-sky-400 font-mono">15 عقد</span>
+              </div>
+              <input id="calc-contracts-input" type="range" min="3" max="80" value="15" oninput="runCalculator()" class="w-full accent-sky-400 cursor-pointer">
+            </div>
+
+            <div class="p-4 rounded-xl bg-[#090714] border border-[#231b46]">
+              <div class="flex justify-between text-xs font-bold text-slate-200 mb-2">
+                <span>متوسط قيمة الصفقة:</span>
+                <span id="calc-deal-val" class="text-purple-400 font-mono">500,000 ج.م</span>
+              </div>
+              <input id="calc-deal-input" type="range" min="50" max="2000" step="50" value="500" oninput="runCalculator()" class="w-full accent-purple-500 cursor-pointer">
+            </div>
+          </div>
+
+          <div class="lg:col-span-6 glass-panel-cyan p-6 rounded-2xl border border-sky-500/30 text-right space-y-3">
+            <div class="flex justify-between text-xs">
+              <span class="text-slate-400">إجمالي التعاقدات المعرضة للمخاطر:</span>
+              <span id="res-exposure" class="font-bold text-white font-mono">7,500,000 ج.م</span>
+            </div>
+            <div class="flex justify-between text-xs">
+              <span class="text-rose-400">الخسارة المحتملة من ثغرة واحدة:</span>
+              <span id="res-loss" class="font-bold text-rose-400 font-mono">360,000 ج.م</span>
+            </div>
+            <div class="flex justify-between text-xs">
+              <span class="text-slate-400">تكلفة الاشتراك السنوي للاستشارات:</span>
+              <span class="font-bold text-slate-300 font-mono">120,000 ج.م</span>
+            </div>
+            <div class="p-3 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-center mt-3">
+              <span class="text-xs text-emerald-400 font-bold block">صافي الوفر المالي المحقق لبيزنسك:</span>
+              <div id="res-savings" class="text-2xl font-black text-emerald-400 font-mono">+240,000 ج.م</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- MODAL -->
+  <div id="consultation-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md hidden">
+    <div class="relative w-full max-w-lg glass-panel rounded-3xl border border-purple-500/40 p-6 sm:p-8 shadow-2xl">
+      <button onclick="closeModal()" class="absolute top-5 left-5 text-slate-400 hover:text-white text-lg">✕</button>
+      
+      <div class="mb-5 text-right">
+        <span class="text-xs font-bold text-purple-300 block mb-1">⚖️ استشارة قانونية موثقة</span>
+        <h3 class="text-xl font-black text-white">حجز موعد استشارة مع فريق المستشار كمال أبو علي</h3>
+      </div>
+
+      <form onsubmit="handleModalSubmit(event)" class="space-y-4 text-right">
+        <div>
+          <label class="block text-xs font-semibold text-slate-300 mb-1">الاسم بالكامل *</label>
+          <input type="text" required placeholder="أدخل اسمك الكريم" class="w-full px-4 py-2 rounded-xl bg-[#090714] border border-[#261f4d] text-sm text-white focus:outline-none focus:border-purple-500">
+        </div>
+        <div>
+          <label class="block text-xs font-semibold text-slate-300 mb-1">رقم الهاتف (واتساب) *</label>
+          <input type="tel" required placeholder="010XXXXXXXX" class="w-full px-4 py-2 rounded-xl bg-[#090714] border border-[#261f4d] text-sm text-white focus:outline-none focus:border-purple-500">
+        </div>
+        <div>
+          <label class="block text-xs font-semibold text-slate-300 mb-1">نوع القضية أو الاستشارة</label>
+          <select class="w-full px-4 py-2 rounded-xl bg-[#090714] border border-[#261f4d] text-sm text-white focus:outline-none focus:border-purple-500">
+            <option>شركات وعقود تجارية (B2B)</option>
+            <option>قضايا محكمة الأسرة والطلاق (B2C)</option>
+            <option>تأسيس شركات ومصانع</option>
+          </select>
+        </div>
+
+        <button type="submit" class="w-full py-3 rounded-xl font-black text-sm bg-gradient-to-r from-purple-600 to-indigo-600 text-white shadow-lg cursor-pointer">
+          تأكيد حجز الاستشارة الفورية ←
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="border-t border-[#231b46] bg-[#070611] py-12 text-slate-400 mt-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-6 text-xs text-center sm:text-right">
+      <div>
+        <div class="text-white font-bold text-sm mb-1">مشروع البطة السمينة 🦆 • مؤسسة كمال أبو علي للمحاماة</div>
+        <div>تظبيط وتجهيز الاستراتيجية بواسطة: <strong class="text-purple-400">SHIFT AGENCY</strong></div>
+      </div>
+      <div class="text-slate-500">
+        برمجة ومواقع • تصوير وميديا • ميديا باينج وتقفيل ديلات
+      </div>
+    </div>
+  </footer>
+
+  <!-- SCRIPT LOGIC (MICRO-INTERACTIONS, SFX, PLAYER & CALCULATOR) -->
+  <script>
+    // Audio FX via Web Audio API
+    let audioContext = null;
+    let sfxEnabled = true;
+
+    function getAudioCtx() {
+      if (!audioContext) {
+        audioContext = new (window.AudioContext || window.webkitAudioContext)();
+      }
+      if (audioContext.state === 'suspended') {
+        audioContext.resume();
+      }
+      return audioContext;
+    }
+
+    function playBeep(freq = 600, dur = 0.05) {
+      if (!sfxEnabled) return;
+      try {
+        const ctx = getAudioCtx();
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.frequency.setValueAtTime(freq, ctx.currentTime);
+        gain.gain.setValueAtTime(0.04, ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + dur);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start();
+        osc.stop(ctx.currentTime + dur);
+      } catch(e) {}
+    }
+
+    function toggleAudioFx() {
+      sfxEnabled = !sfxEnabled;
+      const btn = document.getElementById('sfx-toggle-btn');
+      if (sfxEnabled) {
+        btn.innerText = '🔊';
+        playBeep(880, 0.1);
+      } else {
+        btn.innerText = '🔇';
+      }
+    }
+
+    // TRACK SWITCHER
+    let currentTrack = 'b2b';
+    function switchTrack(track) {
+      currentTrack = track;
+      playBeep(520, 0.08);
+
+      // Contents visibility
+      document.getElementById('content-b2b').classList.toggle('hidden', track !== 'b2b');
+      document.getElementById('content-b2c').classList.toggle('hidden', track !== 'b2c');
+      document.getElementById('content-strategy').classList.toggle('hidden', track !== 'strategy');
+
+      // Buttons active styles
+      const navB2B = document.getElementById('nav-btn-b2b');
+      const navB2C = document.getElementById('nav-btn-b2c');
+      const navStrat = document.getElementById('nav-btn-strategy');
+
+      navB2B.className = track === 'b2b' ? 'flex items-center gap-2 px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all bg-sky-500 text-slate-950 shadow-md shadow-sky-500/30' : 'flex items-center gap-2 px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all text-slate-400 hover:text-white';
+      navB2C.className = track === 'b2c' ? 'flex items-center gap-2 px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all bg-amber-500 text-slate-950 shadow-md shadow-amber-500/30' : 'flex items-center gap-2 px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all text-slate-400 hover:text-white';
+      navStrat.className = track === 'strategy' ? 'flex items-center gap-2 px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all bg-purple-600 text-white shadow-md shadow-purple-600/30' : 'flex items-center gap-2 px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all text-slate-400 hover:text-white';
+
+      // Update hero copy dynamically
+      const badge = document.getElementById('hero-badge-text');
+      const title = document.getElementById('hero-title');
+      const sub = document.getElementById('hero-subtitle');
+      const cta = document.getElementById('hero-cta-btn');
+      const secBadge = document.getElementById('section-icon-badge');
+      const secTitle = document.getElementById('section-main-title');
+      const secDesc = document.getElementById('section-main-desc');
+
+      if (track === 'b2b') {
+        badge.innerText = 'الحملة الأولى: سكة المصانع والشركات الكبرى (B2B)';
+        title.innerHTML = 'حماية قانونية متكاملة لبيزنسك <span class="text-gradient-cyan block mt-2">وتحصين عقودك واستثماراتك</span>';
+        sub.innerHTML = 'أكثر من <strong class="text-sky-400">70% من خسائر وخناقات الشركات</strong> كان يمكن تفاديها بسطر واحد مكتوب صح في العقد من الأول. مؤسسة <span class="text-white font-bold">كمال أبو علي</span> تحمي الكيان وتغلق الثغرات.';
+        cta.innerText = 'طلب فحص عقود شركتك مجاناً';
+        cta.className = 'w-full sm:w-auto px-8 py-4 rounded-2xl font-black text-sm sm:text-base bg-gradient-to-r from-sky-400 via-cyan-500 to-blue-600 text-slate-950 shadow-xl shadow-cyan-500/30 hover:scale-105 active:scale-95 transition-all cursor-pointer';
+        secBadge.innerText = '🏢';
+        secBadge.className = 'w-10 h-10 rounded-xl bg-sky-400 text-slate-950 flex items-center justify-center font-bold text-xl';
+        secTitle.innerText = 'تفاصيل مسار الشركات والمصانع (Corporate)';
+        secDesc.innerText = 'نظام الحماية الوقائية للبيزنس وصياغة العقود والاستشارات السنوية (البطة السمينة)';
+      } else if (track === 'b2c') {
+        badge.innerText = 'الحملة الثانية: سكة قضايا الأسرة والأفراد (B2C)';
+        title.innerHTML = 'سرية تامة وسرعة حاسمة <span class="text-gradient-gold block mt-2">في إنهاء كافة قضايا محكمة الأسرة</span>';
+        sub.innerHTML = 'نضمن لك <strong class="text-amber-400">سرية كاملة بنسبة 100%</strong> وسرعة فائقة في تحصيل النفقات، دعاوى الطلاق والخلع، وقضايا الحضانة والرؤية بأعلى كفاءة.';
+        cta.innerText = 'تحدث مع مستشار الأسرة الآن';
+        cta.className = 'w-full sm:w-auto px-8 py-4 rounded-2xl font-black text-sm sm:text-base bg-gradient-to-r from-amber-400 via-yellow-500 to-orange-500 text-slate-950 shadow-xl shadow-amber-500/30 hover:scale-105 active:scale-95 transition-all cursor-pointer';
+        secBadge.innerText = '⚖️';
+        secBadge.className = 'w-10 h-10 rounded-xl bg-amber-400 text-slate-950 flex items-center justify-center font-bold text-xl';
+        secTitle.innerText = 'تفاصيل مسار قضايا الأسرة والأفراد (Family Law)';
+        secDesc.innerText = 'استجابة فورية وحفظ كامل للحقوق وسرية مطلقة';
+      } else {
+        badge.innerText = 'خطة فض حرق الميزانية وتظبيط الاستهداف في جوجل';
+        title.innerHTML = 'مشروع البطة السمينة: <span class="text-gradient-purple block mt-2">خطة تظبيط الشغل وفصل الحملات</span>';
+        sub.innerHTML = 'هنقسم الميزانية لحملتين منفصلين تماماً، كل واحدة ليها لاندنج بيدج ودنيتها عشان نوقف حرق الفلوس ع الفاضي ونجيب زبون البطة السمينة ذو القيمة العالية.';
+        cta.innerText = 'تطبيق استراتيجية SHIFT الآن';
+        cta.className = 'w-full sm:w-auto px-8 py-4 rounded-2xl font-black text-sm sm:text-base bg-gradient-to-r from-purple-600 to-indigo-600 text-white shadow-xl shadow-purple-600/30 hover:scale-105 active:scale-95 transition-all cursor-pointer';
+        secBadge.innerText = '📊';
+        secBadge.className = 'w-10 h-10 rounded-xl bg-purple-500 text-white flex items-center justify-center font-bold text-xl';
+        secTitle.innerText = 'لوحة المقارنة وحاسبة العائد وخطة SHIFT';
+        secDesc.innerText = 'استراتيجية وقف حرق الميزانية وتوجيه الحملات الإعلانية في مكانها الصحيح';
+      }
+    }
+
+    // VIDEO PLAYER SIMULATOR
+    let isPlaying = false;
+    let playTimer = null;
+    let videoSeconds = 0;
+
+    const stages = [
+      {
+        badge: '[00:00 - 00:20] البداية واللسعة (The Hook)',
+        num: 'مرحلة 1 من 3',
+        quote: '«أكبر غلطة بيقع فيها صاحب البيزنس إنه بيفتكر المحامي دوره يجي بعد ما الفاس تقع في الراس.. في حين إن أكتر من 70% من خناقات الشركات وخسائر الفلوس كان ممكن تتقفل بسطر واحد مكتوب صح في العقد من الأول!»',
+        desc: '💡 صدمة المستمع بالحقيقة وتنبيهه إلى نزيف الأموال الخفي في الثغرات التعاقدية.',
+        borderClass: 'border-rose-500/40',
+        badgeClass: 'bg-rose-500/10 text-rose-300 border-rose-500/20'
+      },
+      {
+        badge: '[00:20 - 00:40] القيمة والتقل (Authority)',
+        num: 'مرحلة 2 من 3',
+        quote: '«معانا في مؤسسة كمال أبو علي، إحنا بنوفر الحماية الكاملة لبيزنسك قبل ما المشكلة تبدأ.. من تظبيط العقود التجارية وتأسيس الكيان، لحد قفل القضايا العمالية والتجارية في المحاكم بأسرع وقت وأعلى كفاءة.»',
+        desc: '💡 إظهار ثقل وخبرة كمال أبو علي في تحصين الكيان وحسم القضايا في أسرع وقت.',
+        borderClass: 'border-sky-500/40',
+        badgeClass: 'bg-sky-500/10 text-sky-300 border-sky-500/20'
+      },
+      {
+        badge: '[00:40 - 00:60] القفلة والطلب (Call to Action)',
+        num: 'مرحلة 3 من 3',
+        quote: '«أمّن شركتك وعقودك صح النهاردة.. سيب بيانات شركتك في الفورم عشان نحجزلك ميعاد استشارة ونقعد نراجع ملفاتك القانونية جوه المكتب.»',
+        desc: '💡 دعوة صريحة ومباشرة لحجز استشارة وفحص أوراق الشركة داخل المكتب.',
+        borderClass: 'border-emerald-500/40',
+        badgeClass: 'bg-emerald-500/10 text-emerald-300 border-emerald-500/20'
+      }
+    ];
+
+    function updatePlayerUI() {
+      const idx = videoSeconds < 20 ? 0 : videoSeconds < 40 ? 1 : 2;
+      const st = stages[idx];
+
+      document.getElementById('stage-badge').innerText = st.badge;
+      document.getElementById('stage-num').innerText = st.num;
+      document.getElementById('stage-quote').innerText = st.quote;
+      document.getElementById('stage-desc').innerText = st.desc;
+      
+      const mins = Math.floor(videoSeconds / 60);
+      const secs = videoSeconds % 60;
+      document.getElementById('time-display').innerText = `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+      document.getElementById('progress-bar').style.width = `${(videoSeconds / 60) * 100}%`;
+
+      // Equalizer bars animation toggle
+      const bars = ['bar-1', 'bar-2', 'bar-3', 'bar-4', 'bar-5'];
+      bars.forEach((id, i) => {
+        const el = document.getElementById(id);
+        if (isPlaying) {
+          el.className = `w-1 bg-purple-400 rounded-full wave-anim-${(i%5)+1}`;
+        } else {
+          el.className = 'w-1 bg-purple-500/50 rounded-full h-3';
+        }
+      });
+      document.getElementById('player-state-text').innerText = isPlaying ? 'جاري الإلقاء والتأثير...' : 'جاهز للتشغيل';
+    }
+
+    function togglePlay() {
+      playBeep(650);
+      isPlaying = !isPlaying;
+      document.getElementById('play-btn').innerText = isPlaying ? '⏸' : '▶';
+
+      if (isPlaying) {
+        if (videoSeconds >= 60) videoSeconds = 0;
+        playTimer = setInterval(() => {
+          videoSeconds++;
+          if (videoSeconds >= 60) {
+            videoSeconds = 60;
+            isPlaying = false;
+            clearInterval(playTimer);
+            document.getElementById('play-btn').innerText = '▶';
+            playBeep(880, 0.2);
+          }
+          updatePlayerUI();
+        }, 600);
+      } else {
+        clearInterval(playTimer);
+      }
+      updatePlayerUI();
+    }
+
+    function jumpTo(sec) {
+      playBeep(700);
+      videoSeconds = sec;
+      updatePlayerUI();
+      if (!isPlaying) togglePlay();
+    }
+
+    // ROI CALCULATOR
+    function runCalculator() {
+      const contracts = Number(document.getElementById('calc-contracts-input').value);
+      const dealThousands = Number(document.getElementById('calc-deal-input').value);
+
+      document.getElementById('calc-contracts-val').innerText = `${contracts} عقد`;
+      document.getElementById('calc-deal-val').innerText = `${(dealThousands * 1000).toLocaleString('ar-EG')} ج.م`;
+
+      const totalExposure = contracts * dealThousands * 1000;
+      const potentialLoss = Math.round(totalExposure * 0.12 * 0.4);
+      const retainer = 120000;
+      const savings = Math.max(0, potentialLoss - retainer);
+
+      document.getElementById('res-exposure').innerText = `${totalExposure.toLocaleString('ar-EG')} ج.م`;
+      document.getElementById('res-loss').innerText = `${potentialLoss.toLocaleString('ar-EG')} ج.م`;
+      document.getElementById('res-savings').innerText = `+${savings.toLocaleString('ar-EG')} ج.م`;
+    }
+
+    // MODAL
+    function openModal() {
+      playBeep(800);
+      document.getElementById('consultation-modal').classList.remove('hidden');
+    }
+    function closeModal() {
+      playBeep(350);
+      document.getElementById('consultation-modal').classList.add('hidden');
+    }
+
+    function handleFormSubmit(e) {
+      e.preventDefault();
+      playBeep(880, 0.25);
+      alert('تم استلام طلب شركتك بنجاح! سيتواصل معك المستشار كمال أبو علي لتأكيد موعد جلسة فحص العقود.');
+    }
+
+    function handleModalSubmit(e) {
+      e.preventDefault();
+      playBeep(880, 0.25);
+      alert('تم تسجيل حجز الاستشارة بنجاح! سيتواصل معك مستشار المكتب خلال دقائق.');
+      closeModal();
+    }
+
+    // Init
+    runCalculator();
+    updatePlayerUI();
+  </script>
+</body>
+</html>
